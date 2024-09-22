@@ -155,4 +155,7 @@ require TEMPLATE_DIRECTORY . '/inc/register.php';
 require TEMPLATE_DIRECTORY . '/inc/remove-core-features.php';
 
 // Theme filters
+require TEMPLATE_DIRECTORY . '/inc/actions.php';
+
+// Theme filters
 require TEMPLATE_DIRECTORY . '/inc/filters.php';

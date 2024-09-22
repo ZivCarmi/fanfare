@@ -1,3 +1,128 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Regular";
+  src: url("../fonts/Regular-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Regular";
+  src: url("../fonts/Regular-Semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Regular";
+  src: url("../fonts/Regular-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@layer base {
+  :root {
+    --background: 214.29deg 24.14% 94.31%;
+    --foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --popover: 9.13deg 100% 54.9%;
+    --popover-foreground: 0 0% 100%;
+
+    --border: 0 0% 100%;
+    --input: 6.21deg 83.65% 40.78%;
+
+    --primary: 9.13deg 100% 54.9%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 64.76deg 100% 49.41%;
+    --secondary-foreground: 0 0% 0%;
+  }
+}
+
+@layer components {
+  .px-site {
+    @apply px-site-mobile lg:px-site-desktop;
+  }
+
+  .container {
+    max-width: 1436px;
+    @apply px-site-mobile lg:px-site-desktop;
+  }
+}
+
+html {
+  font-family: Regular, sans-serif;
+  line-height: 1.125rem;
+  font-weight: 500;
+}
+
+a {
+  transition: color 0.5s ease-in-out;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.text-yellow {
+  @apply text-secondary;
+}
+
+#site-header {
+  @apply h-header-height;
+}
+
+#site-navigation .menu a {
+  position: relative;
+  @apply text-5xl lg:text-[0.9375rem] lg:uppercase;
+}
+
+#site-navigation .menu a:after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  @apply bg-primary;
+}
+
+#site-navigation .menu a:hover {
+  @apply text-primary;
+}
+
+#site-navigation .menu a:hover:after {
+  opacity: 1;
+}
+
+body.home .footer-container,
+body.page-template-careers .footer-container,
+body.page-template-process .footer-container {
+  border-top: none;
+}
