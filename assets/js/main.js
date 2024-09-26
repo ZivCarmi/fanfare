@@ -32,4 +32,16 @@
       return;
     }
   });
+
+  // Set header sticky class
+  $(window).on("scroll", (e) => {
+    const header = document.getElementById("site-header");
+    const sticky = header.offsetTop;
+
+    if (window.scrollY > sticky) {
+      document.body.classList.add("sticky-header");
+    } else {
+      document.body.classList.remove("sticky-header");
+    }
+  });
 })(jQuery);

@@ -4,6 +4,12 @@
 
 @font-face {
   font-family: "Regular";
+  src: url("../fonts/Regular-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Regular";
   src: url("../fonts/Regular-Medium.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
@@ -19,6 +25,16 @@
   src: url("../fonts/Regular-Bold.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
+}
+@font-face {
+  font-family: "Regular";
+  src: url("../fonts/Regular-Extrabold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+:root {
+  --container-width: 1436px;
 }
 
 @layer base {
@@ -54,6 +70,14 @@
 
     --secondary: 64.76deg 100% 49.41%;
     --secondary-foreground: 0 0% 0%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
   }
 }
 
@@ -63,19 +87,35 @@
   }
 
   .container {
-    max-width: 1436px;
+    max-width: var(--container-width);
     @apply px-site-mobile lg:px-site-desktop;
+  }
+
+  .container-no-padding {
+    max-width: var(--container-width);
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
 html {
   font-family: Regular, sans-serif;
   line-height: 1.125rem;
-  font-weight: 500;
+  font-weight: 400;
+  scroll-behavior: smooth;
 }
 
 a {
   transition: color 0.5s ease-in-out;
+}
+
+a:after {
+  transition: opacity 0.5s ease-in-out;
+}
+
+button {
+  @apply inline-flex items-center justify-center transition-colors;
 }
 
 input::-webkit-outer-spin-button,
@@ -92,10 +132,6 @@ input[type="number"] {
   @apply text-secondary;
 }
 
-#site-header {
-  @apply h-header-height;
-}
-
 #site-navigation .menu a {
   position: relative;
   @apply text-5xl lg:text-[0.9375rem] lg:uppercase;
@@ -109,20 +145,17 @@ input[type="number"] {
   bottom: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
   @apply bg-primary;
 }
 
 #site-navigation .menu a:hover {
-  @apply text-primary;
+  @apply text-secondary lg:text-primary;
 }
 
 #site-navigation .menu a:hover:after {
   opacity: 1;
 }
 
-body.home .footer-container,
-body.page-template-careers .footer-container,
-body.page-template-process .footer-container {
-  border-top: none;
+body.popover-active .site-logo-link svg path {
+  @apply fill-primary-foreground;
 }
