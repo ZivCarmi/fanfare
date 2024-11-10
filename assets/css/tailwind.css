@@ -106,7 +106,30 @@ html {
   scroll-behavior: smooth;
 }
 
+body,
+body a,
+body button {
+  cursor: none;
+}
+
+.cursor-mode #site-cursor {
+  @apply opacity-100;
+}
+
+#site-cursor.text {
+  @apply mix-blend-difference;
+}
+
+#site-cursor.text .cursor-circle {
+  @apply bg-primary;
+}
+
+#site-cursor.text ~ #site-cursor-overlay {
+  @apply block;
+}
+
 a {
+  color: #ffffff;
   transition: color 0.5s ease-in-out;
 }
 
@@ -116,6 +139,22 @@ a:after {
 
 button {
   @apply inline-flex items-center justify-center transition-colors;
+}
+
+.boxed-button {
+  @apply inline-flex py-1.5 px-3 items-center justify-center gap-5 relative text-2xl font-bold border rounded-3px transition-colors duration-500 lg:border-2 lg:text-34px;
+}
+
+.boxed-button:hover {
+  @apply border-secondary text-secondary border-secondary fill-secondary;
+}
+
+.boxed-button svg {
+  @apply transition-colors duration-500;
+}
+
+.boxed-button:hover svg {
+  @apply fill-secondary;
 }
 
 input::-webkit-outer-spin-button,
@@ -128,34 +167,219 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.text-yellow {
-  @apply text-secondary;
+#site-navigation {
+  @apply fixed z-50 inset-0 translate-x-full duration-500 ease-in-out lg:relative lg:translate-x-0 lg:duration-0;
+}
+
+#site-navigation.active {
+  @apply translate-x-0 opacity-100;
 }
 
 #site-navigation .menu a {
-  position: relative;
-  @apply text-5xl lg:text-[0.9375rem] lg:uppercase;
-}
-
-#site-navigation .menu a:after {
-  content: "";
-  width: 100%;
-  height: 1px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  opacity: 0;
-  @apply bg-primary;
+  @apply relative text-5xl lg:text-[0.9375rem] lg:uppercase;
 }
 
 #site-navigation .menu a:hover {
   @apply text-secondary lg:text-primary;
 }
 
-#site-navigation .menu a:hover:after {
-  opacity: 1;
+body.page-template-process #site-navigation .menu a:hover {
+  @apply lg:text-background;
 }
 
-body.popover-active .site-logo-link svg path {
-  @apply fill-primary-foreground;
+#site-navigation .menu a:hover:after {
+  @apply opacity-100;
+}
+
+body.page-template-process #site-navigation a {
+  @apply lg:text-background;
+}
+
+#site-navigation .lets-fanfare a {
+  @apply text-secondary;
+}
+
+body.page-template-process #site-navigation .menu .lets-fanfare a {
+  @apply lg:text-primary;
+}
+
+body.page-template-lets-fanfare .site-logo-link svg path,
+#site-navigation.active ~ .mobile-menu .site-logo-link svg path {
+  @apply fill-primary-foreground lg:fill-current;
+}
+
+/* Contact form */
+.wpcf7 .form-wrapper {
+  @apply grid gap-0.5 lg:gap-2;
+}
+
+.input-wrapper.name {
+  grid-area: 1/1;
+  @apply lg:row-start-1 lg:col-start-1;
+}
+
+.input-wrapper.email {
+  @apply lg:row-start-2 lg:col-start-1;
+}
+
+.input-wrapper.subject {
+  @apply lg:row-span-2 lg:col-start-2;
+}
+
+.wpcf7-form-control-wrap {
+  @apply block h-full;
+}
+
+.wpcf7 input,
+.wpcf7 textarea {
+  background-color: #bf2311;
+  @apply w-full relative text-36px font-bold px-3 py-2 outline-none rounded-3px hover:cursor-input;
+}
+
+.wpcf7 input {
+  @apply h-full min-h-14;
+}
+
+.wpcf7 textarea {
+  @apply flex h-44 min-h-40;
+}
+
+.wpcf7 input::placeholder {
+  @apply absolute top-1;
+}
+
+.wpcf7 input::placeholder,
+.wpcf7 textarea::placeholder {
+  @apply text-primary;
+}
+
+.wpcf7 .form-actions {
+  @apply flex justify-center items-end mt-5 lg:col-span-2 lg:justify-between lg:mt-4;
+}
+
+.wpcf7 .close-btn {
+  @apply text-22px;
+}
+
+.wpcf7 .close-btn:hover {
+  text-decoration: underline;
+}
+
+body.page-template-lets-fanfare .wpcf7 .close-btn {
+  @apply hidden;
+}
+
+.wpcf7 button[type="submit"] {
+  @apply justify-self-center;
+}
+
+.wpcf7-form button[type="submit"]:after {
+  content: "Got it";
+  top: calc(100% + 5px);
+  @apply absolute right-0 opacity-0 text-secondary text-base font-medium duration-150;
+}
+
+.wpcf7-form.sent button[type="submit"]:after {
+  @apply opacity-100;
+}
+
+.wpcf7-response-output {
+  display: none;
+}
+
+.wpcf7-not-valid-tip {
+  position: absolute;
+  bottom: 4px;
+  right: 7px;
+  @apply text-secondary;
+}
+
+.wpcf7 input:-webkit-autofill,
+.wpcf7 input:-webkit-autofill:hover,
+.wpcf7 input:-webkit-autofill:focus,
+.wpcf7 input:-webkit-autofill:active {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0 50px #bf2311 inset !important;
+}
+
+body.page-template-process .tab-container:not(.active):hover {
+  @apply lg:duration-500 lg:bg-background;
+}
+
+body.page-template-process .tab-container:not(.active):hover .tab-titles {
+  @apply lg:text-secondary;
+}
+
+body.page-template-process .tab-container.active .tab-titles {
+  @apply lg:hidden;
+}
+
+body.page-template-about .cards .card .title br {
+  @apply lg:hidden;
+}
+
+body.page-template-about .cards .card:first-child .description {
+  max-width: 428px;
+}
+
+body.page-template-about .cards .card:nth-child(2) .description {
+  max-width: 470px;
+}
+
+body.page-template-about .cards .card:nth-child(3) .description {
+  max-width: 555px;
+}
+
+body.page-template-about .cards .card:nth-child(4) .description {
+  max-width: 508px;
+}
+
+body.error404 .main-container {
+  @apply bg-primary;
+}
+
+body.error404 footer {
+  display: none;
+}
+
+#preloader {
+  @apply fixed inset-0 flex flex-col items-center justify-center opacity-100 translate-y-full bg-primary z-cursor p-site-mobile transition-all duration-1000 ease-in-out lg:p-site-desktop;
+}
+
+#preloader.loading {
+  @apply translate-y-0;
+}
+
+#preloader.loaded {
+  @apply opacity-0;
+}
+
+body.home .home-hero .home-popovers {
+  @apply relative mt-6 lg:w-full lg:h-full lg:mt-0 lg:absolute lg:inset-0;
+}
+
+body.home .home-hero .popover-group {
+  @apply w-full absolute opacity-0 scale-50 lg:inset-0 1.5xl:scale-75;
+  transition: opacity 0.4s cubic-bezier(0.37, 0.01, 0, 0.98),
+    transform 0.5s cubic-bezier(0.37, 0.01, 0, 0.98);
+}
+
+body.home .home-hero .popover-group[data-popover-group="0"] {
+  @apply grid pt-8 grid-cols-3 gap-x-4 gap-y-6 items-center lg:block lg:pt-0;
+}
+
+body.home .home-hero .popover-active {
+  @apply opacity-100 scale-100 lg:scale-75 1.5xl:scale-100;
+}
+
+body.home .home-hero [data-mobile-visibility="false"] {
+  @apply hidden lg:block;
+}
+
+body.home .swiper-pagination-bullet-active {
+  @apply bg-primary;
+}
+
+body.single-work .textfield br {
+  @apply hidden lg:block;
 }

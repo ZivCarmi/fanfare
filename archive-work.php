@@ -1,6 +1,11 @@
 <?php if (!defined('ABSPATH')) exit;
 
+global $wp_query;
+
+
 get_header();
+
+$projects = $wp_query->posts;
 
 if (have_posts()) : ?>
     <section class="container pt-12 pb-14">
@@ -10,12 +15,12 @@ if (have_posts()) : ?>
                 $thumbnails = get_field('thumbnails');
             ?>
                 <li class="work-item group">
-                    <a class="block relative" href="<?= get_permalink(); ?>" title="<?= the_title(); ?>">
-                        <?php if ($thumbnails['hovered_video']) : ?>    
-                            <img class="object-cover transition-opacity duration-500 opacity-100 group-hover:opacity-0" src="<?= $thumbnails['main_image']['url']; ?>" alt="<?= $thumbnails['main_image']['alt']; ?>">
+                    <a class="h-full flex relative" href="<?= get_permalink(); ?>">
+                        <?php if ($thumbnails['hovered_video']) : ?>
+                            <img class="object-cover transition-opacity duration-500 opacity-100 z-10 group-[.active]:opacity-0 group-hover:lg:opacity-0" src="<?= $thumbnails['main_image']['url']; ?>" alt="<?= $thumbnails['main_image']['alt']; ?>">
                         <?php endif; ?>
                         <?php if ($thumbnails['hovered_video']) : ?>
-                            <video class="absolute inset-0 w-full object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100" width="<?= $thumbnails['hovered_video']['width']; ?>" height="<?= $thumbnails['hovered_video']['height']; ?>" muted loop>
+                            <video preload="none" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 lg:opacity-0 group-hover:lg:opacity-100" width="<?= $thumbnails['hovered_video']['width']; ?>" height="<?= $thumbnails['hovered_video']['height']; ?>" muted loop>
                                 <source src="<?= $thumbnails['hovered_video']['url']; ?>" >
                                 Your browser does not support HTML video.
                             </video>
@@ -23,6 +28,11 @@ if (have_posts()) : ?>
                     </a>
                 </li>  
             <?php endwhile; ?>
+            <?php if (count($projects) % 2 !== 0) : ?>
+                <li class="hidden lg:block">
+                    <span class="text-80px font-bold transition-colors duration-500 hover:text-secondary">We’ve got more surprises up our sleeve.</span>
+                </li>  
+            <?php endif; ?>
         </ul>
     </section>
 <?php else : ?>
