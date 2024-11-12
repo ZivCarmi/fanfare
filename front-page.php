@@ -17,7 +17,7 @@ if ($highlighted_words) {
 			'videos' => $word['videos'],
 		];
 		$json_data = htmlspecialchars(json_encode($word_fields), ENT_QUOTES, 'UTF-8');
-		$highlighted_word_html = '<a href="javascript:void(0)"><span class="highlighted-word font-bold transition-colors duration-200 text-primary pointer-events-none lg:pointer-events-auto" data-videos="' . $json_data . '" data-group-id="' . $key . '">' . $actual_word . '</span></a>';
+		$highlighted_word_html = '<a href="javascript:void(0)" class="highlighted-word font-bold transition-colors duration-200 text-primary pointer-events-none lg:pointer-events-auto" data-videos="' . $json_data . '" data-group-id="' . $key . '">' . $actual_word . '</a>';
 
 		// Replace the word in the entry text with the highlighted word
         $main_text = str_replace($word['matched_word'], $highlighted_word_html, $main_text);
@@ -26,7 +26,7 @@ if ($highlighted_words) {
 ?>
 <section class="home-hero container h-hero-screen flex flex-col items-center pb-12 relative lg:pb-16">
 	<div class="text-container mt-20 relative lg:mt-auto">
-		<div class="hoverable-content relative z-10 mx-auto text-28px font-semibold text-balance max-w-80 lg:max-w-[58rem] lg:text-[4.47rem] lg:text-center">
+		<div class="hero-text hoverable-content relative z-10 mx-auto text-28px font-semibold text-balance max-w-80 lg:max-w-[58rem] lg:text-[4.47rem] lg:text-center">
 			<?= $main_text; ?>
 		</div>
 	</div>

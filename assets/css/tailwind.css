@@ -376,6 +376,18 @@ body.home .home-hero [data-mobile-visibility="false"] {
   @apply hidden lg:block;
 }
 
+body.home .home-hero .hero-text > * {
+  @apply duration-200;
+}
+
+body.home.hero-hover .home-hero .hero-text > *:not(.word-active) {
+  @apply opacity-50;
+}
+
+body.home.hero-hover .home-hero .hero-text a.word-active {
+  @apply text-secondary;
+}
+
 body.home .swiper-pagination-bullet-active {
   @apply bg-primary;
 }
