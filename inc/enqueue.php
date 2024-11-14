@@ -22,6 +22,8 @@ function fanfare_styles() {
 		wp_enqueue_script('work-script', TEMPLATE_DIRECTORY_URI . '/assets/js/work.js' . FILES_VERSION, ['jquery'], null, true);
 	} else if (is_page_template('pages/process.php')) {
 		wp_enqueue_script('process-script', TEMPLATE_DIRECTORY_URI . '/assets/js/process.js' . FILES_VERSION, ['jquery'], null, true);
+	} else if (is_singular('work')) {
+		wp_enqueue_script('single-work-script', TEMPLATE_DIRECTORY_URI . '/assets/js/single-work.js' . FILES_VERSION, ['jquery'], null, true);
 	}
 
     wp_enqueue_script('fanfare-script', TEMPLATE_DIRECTORY_URI . '/assets/js/main.js' . FILES_VERSION, ['jquery'], null, true);

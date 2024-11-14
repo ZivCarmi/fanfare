@@ -112,7 +112,11 @@
             Your browser does not support HTML video.
         </video>`;
       } else if (video.type === "image") {
-        popoverHtml += `<img src="${video.url}" class="h-full m-auto rounded-2px opacity-50" />`;
+        popoverHtml += `<img src="${
+          video.url
+        }" class="h-full m-auto rounded-2px opacity-50${
+          video.mime_type === "image/svg+xml" ? " style-svg" : ""
+        }" />`;
       }
 
       popoverHtml += "</div>";
@@ -212,7 +216,9 @@
             Your browser does not support HTML video.
           </video>`;
         } else if (video.type === "image") {
-          popoverHtml += `<img src="${video.url}" class="w-full h-full" width="${video.width}" height="${video.height}" />`;
+          popoverHtml += `<img src="${video.url}" class="w-full h-full${
+            video.mime_type === "image/svg+xml" ? " style-svg" : ""
+          }" width="${video.width}" height="${video.height}" />`;
         }
 
         popoverHtml += "</div>";
