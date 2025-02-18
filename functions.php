@@ -34,9 +34,6 @@ function fanfare_setup() {
 		*/
 	load_theme_textdomain( 'fanfare', TEMPLATE_DIRECTORY . '/languages' );
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
-
 	/*
 		* Let WordPress manage the document title.
 		* By adding theme support, we declare that this theme does not use a
@@ -69,21 +66,6 @@ function fanfare_setup() {
 		]
 	);
 
-	// Set up the WordPress core custom background feature.
-	add_theme_support(
-		'custom-background',
-		apply_filters(
-			'fanfare_custom_background_args',
-			array(
-				'default-color' => 'ffffff',
-				'default-image' => '',
-			)
-		)
-	);
-
-	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
-
 	/**
 	 * Add support for core custom logo.
 	 *
@@ -100,38 +82,6 @@ function fanfare_setup() {
 	);
 }
 add_action( 'after_setup_theme', 'fanfare_setup' );
-
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function fanfare_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'fanfare_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'fanfare_content_width', 0 );
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function fanfare_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'fanfare' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'fanfare' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'fanfare_widgets_init' );
 
 // theme helper functions
 require TEMPLATE_DIRECTORY . '/inc/helpers.php';

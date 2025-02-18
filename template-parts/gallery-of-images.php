@@ -1,24 +1,23 @@
 <?php if (!defined('ABSPATH')) exit;
+
 $content = $args['content'];
+
+$gallery_count = count($content['gallery']);
+$grid_cols = $gallery_count >= 8 ? 'lg:grid-cols-4' : ($gallery_count >= 2 ? 'lg:grid-cols-2' : '');
 ?>
 
-<div class="grid justify-items-center<?= count($content['gallery']) > 1 ? ' lg:grid-cols-2' : "" ?>">
-    <?php foreach ($content['gallery'] as $file) : ?>
-        <?php if ($file['type'] === 'image') : ?>
-            <img src="<?= $file['url']; ?>" alt="<?= $file['alt']; ?>">
-        <?php elseif ($file['type'] === 'video') :
-            $manualplay = get_post_meta($file['ID'], '_video_manualplay', true);
+<div class="grid gap-5 justify-items-center <?= $grid_cols; ?> lg:gap-8">
+    <?php foreach ($content['gallery'] as $file) :
+            $is_manual_video = $file['type'] === 'video' && get_post_meta($file['ID'], '_video_manualplay', true);
+            $asset_data = htmlspecialchars(json_encode(['type' => $file['type'], 'url' => $file['url'], 'manual' => $is_manual_video]), ENT_QUOTES, 'UTF-8');
             ?>
-            <div class="video-wrapper relative group">
-                <?php if ($manualplay) : ?>
-                    <img class="style-svg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 opacity-100 duration-200 group-[.playing]:opacity-0" src="<?= wp_get_attachment_url(446); ?>" alt="Play video">
+            <button class="w-full rounded-2xl overflow-hidden" data-asset="<?= $asset_data; ?>">
+                <?php if ($file['type'] === 'image') : ?>
+                    <img class="slider-asset w-full" src="<?= $file['url']; ?>" alt="<?= $file['alt']; ?>">
+                <?php elseif ($file['type'] === 'video') : ?>
+                    <video class="slider-asset w-full" src="<?= $file['url']; ?>" preload="metadata" width="<?= $file['width']; ?>" height="<?= $file['height']; ?>" data-lazy-load muted playsinline loop></video>
                 <?php endif; ?>
-                <video preload="metadata" width="<?= $file['width']; ?>" height="<?= $file['height']; ?>" <?= !$manualplay ? 'data-lazy-load muted' : 'data-manual-play' ?> playsinline loop>
-                    <source src="<?= $file['url']; ?>" >
-                    Your browser does not support HTML video.
-                </video>
-            </div>
-        <?php endif; ?>
+            </button>
     <?php endforeach; ?>
     <?php if ($content['text_block']['text']) :
         $align = $content['text_block']['text_alignment'];

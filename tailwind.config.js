@@ -17,6 +17,8 @@ module.exports = {
       lg: "1024px",
       xl: "1280px",
       "1.5xl": "1380px",
+      "2xl": "1536px",
+      xxl: "2501px",
     },
     fontFamily: {
       Regular: ['"Regular"', "ui-sans-serif"],
@@ -54,6 +56,8 @@ module.exports = {
         "form-mobile-height": "calc(100dvh - 8.8125rem)",
       },
       spacing: {
+        "work-grid-y": "16px",
+        "work-grid-x": "17px",
         "30px": "1.875rem",
         "site-mobile": "1.25rem",
         "site-desktop": "3rem",

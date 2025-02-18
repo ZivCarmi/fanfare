@@ -1,6 +1,6 @@
 <?php if (!defined('ABSPATH')) exit;
 
-// Template Name: Lets Fanfare
+// Template Name: Contact
 
 if (!current_user_can('administrator')) {
     if (!wp_is_mobile()) {
