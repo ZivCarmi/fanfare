@@ -107,7 +107,7 @@
 }
 
 /*
-! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -877,6 +877,10 @@ video {
   margin-top: 0.625rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -895,10 +899,6 @@ video {
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
 }
 
 .flex {
@@ -1029,10 +1029,6 @@ video {
   width: 6rem;
 }
 
-.w-3\/4 {
-  width: 75%;
-}
-
 .w-30px {
   width: 1.875rem;
 }
@@ -1149,17 +1145,8 @@ video {
        columns: 2;
 }
 
-.columns-4 {
-  -moz-columns: 4;
-       columns: 4;
-}
-
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .grid-rows-\[auto_1fr_auto\] {
@@ -1312,6 +1299,11 @@ video {
   background-color: hsl(var(--secondary));
 }
 
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
 .fill-primary {
   fill: hsl(var(--primary));
 }
@@ -1461,11 +1453,6 @@ video {
 
 .text-26px {
   font-size: 1.625rem;
-  line-height: 1;
-}
-
-.text-28px {
-  font-size: 1.75rem;
   line-height: 1;
 }
 
@@ -2243,12 +2230,6 @@ body.single-work .slider-gallery.active {
   }
 }
 
-@media (min-width: 768px) {
-  .md\:w-3\/4 {
-    width: 75%;
-  }
-}
-
 @media (min-width: 1024px) {
   .lg\:absolute {
     position: absolute;
@@ -2571,10 +2552,6 @@ body.single-work .slider-gallery.active {
     width: 234px;
   }
 
-  .lg\:w-\[25rem\] {
-    width: 25rem;
-  }
-
   .lg\:w-\[50px\] {
     width: 50px;
   }
@@ -2589,10 +2566,6 @@ body.single-work .slider-gallery.active {
 
   .lg\:w-auto {
     width: auto;
-  }
-
-  .lg\:w-3\/4 {
-    width: 75%;
   }
 
   .lg\:max-w-2xl {
@@ -2843,6 +2816,11 @@ body.single-work .slider-gallery.active {
     line-height: 1.5rem;
   }
 
+  .lg\:text-28px {
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
   .lg\:text-28px\/tight {
     font-size: 1.75rem;
     line-height: 1.25;
@@ -2879,18 +2857,13 @@ body.single-work .slider-gallery.active {
   }
 
   .lg\:text-\[clamp\(0\.9rem\2c 1\.4vw\2c 1\.3rem\)\]\/\[1\.08\] {
-    font-size: clamp(0.9rem,1.4vw,1.3rem);
+    font-size: clamp(0.9rem, 1.4vw, 1.3rem);
     line-height: 1.08;
   }
 
   .lg\:text-\[clamp\(6\.5rem\2c 10vw\2c 8\.75rem\)\]\/\[0\.85\] {
-    font-size: clamp(6.5rem,10vw,8.75rem);
+    font-size: clamp(6.5rem, 10vw, 8.75rem);
     line-height: 0.85;
-  }
-
-  .lg\:text-28px {
-    font-size: 1.75rem;
-    line-height: 1;
   }
 
   .lg\:font-bold {

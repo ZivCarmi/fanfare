@@ -80,6 +80,13 @@ function fanfare_setup() {
 			'flex-height' => true,
 		)
 	);
+
+	/**
+	 * Add Woocommerce support.
+	 *
+	 * @link https://codex.wordpress.org/Theme_Logo
+	 */
+	add_theme_support('woocommerce');
 }
 add_action( 'after_setup_theme', 'fanfare_setup' );
 
@@ -100,3 +107,11 @@ require TEMPLATE_DIRECTORY . '/inc/actions.php';
 
 // Theme filters
 require TEMPLATE_DIRECTORY . '/inc/filters.php';
+
+if (class_exists('woocommerce')) {
+	// Theme woocommerce actions
+	require TEMPLATE_DIRECTORY . '/inc/woocommerce-actions.php';
+
+	// Theme woocommerce filters
+	require TEMPLATE_DIRECTORY . '/inc/woocommerce-filters.php';
+}

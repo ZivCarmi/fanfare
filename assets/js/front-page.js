@@ -125,7 +125,7 @@
 
         popoverHtml += `<img src="${video.url}" class="w-full h-full${
           isSvg ? " style-svg" : ""
-        }" width="${video.width}" height="${video.height}" />`;
+        }" width="${video.width}" height="${video.height}" alt="" />`;
       }
 
       popoverHtml += "</div>";

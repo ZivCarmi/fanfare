@@ -14,13 +14,13 @@ $hoverable_logo = !isset($args['hoverable_logo']) ?? true;
 		<link rel="profile" href="https://gmpg.org/xfn/11">
 
 		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-NM68X9MKFN"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z51X9DXNKP"></script>
 		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-			gtag('config', 'G-NM68X9MKFN');
+		gtag('config', 'G-Z51X9DXNKP');
 		</script>
 
 		<?php wp_head(); ?>
