@@ -4,12 +4,7 @@ const headerHeight = "64px";
 
 module.exports = {
   darkMode: ["class"],
-  content: [
-    "./*.{php,html,js}",
-    "./assets/js/*.js",
-    "./pages/**/*.{php,html,js}",
-    "./template-parts/*.{php,html,js}",
-  ],
+  content: ["./**/*.php", "./assets/js/**/*.js"],
   theme: {
     screens: {
       sm: "640px",

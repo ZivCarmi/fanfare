@@ -31,9 +31,7 @@
 			</footer>
 		</div>
 
-		<?php get_template_part('/template-parts/fanfare-form-popup'); ?>
-
-		<div id="site-cursor" class="w-30px h-30px opacity-0 fixed top-0 left-0 pointer-events-none z-cursor [transform:translate3d(50vw,-50px,0)] transition-opacity duration-500 mix-blend-normal will-change-transform">
+		<!-- <div id="site-cursor" class="w-30px h-30px opacity-0 fixed top-0 left-0 pointer-events-none z-cursor [transform:translate3d(50vw,-50px,0)] transition-opacity duration-500 mix-blend-normal will-change-transform">
 			<div class="flex items-center justify-center text-center text-background text-[0.75rem]/[1] italic absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 origin-[50%_50%] duration-300 [backface-visibility:hidden]">
 				<div class="cursor-circle w-30px h-30px rounded-full bg-secondary duration-300"></div>
 				<div class="tooltip w-30px h-30px flex items-center justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 rounded-full duration-300"></div>
@@ -44,7 +42,7 @@
 		</div>
 		<div id="site-cursor-overlay" class="hidden fixed top-0 left-0 w-30px h-30px pointer-events-none z-[1001] mix-blend-darken contrast-100">
 			<div class="cursor-circle absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 origin-[50%_50%] w-30px h-30px rounded-full duration-300 [backface-visibility:hidden] bg-primary"></div>
-		</div>
+		</div> -->
 
 		<?php wp_footer(); ?>
 

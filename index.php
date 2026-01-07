@@ -1,8 +1,7 @@
 <?php if (!defined('ABSPATH')) exit;
 
 get_header();
-?>
 
-index
+the_content();
 
-<?php get_footer();
+get_footer();

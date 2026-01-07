@@ -30,7 +30,7 @@ $projects = get_posts([
 ]);
 $divided_projects = array_chunk($projects, ceil(count($projects) / 2));
 ?>
-<section class="home-hero container h-hero-screen flex flex-col items-center pb-12 relative lg:pb-16">
+<section class="home-hero container h-hero-screen flex flex-col items-center pb-12 relative z-0 lg:pb-16">
 	<div class="text-container mt-auto relative">
 		<div class="hero-text max-w-md relative z-10 mx-auto text-3xl tracking-tight text-balance text-center lg:max-w-2xl lg:text-5xl/[1.2] lg:tracking-[0.5px]">
 			<?= $main_text; ?>
@@ -47,7 +47,7 @@ $divided_projects = array_chunk($projects, ceil(count($projects) / 2));
                 $thumbnails = get_field('thumbnails', $project->ID);
                 ?>
                 <li class="work-item group mb-4">
-                    <a class="h-full rounded-2xl overflow-hidden flex relative" href="<?= get_permalink($project->ID); ?>" data-cursor-project="<?= $project->post_title; ?>">
+                    <a class="h-full rounded-2xl overflow-hidden flex relative z-0" href="<?= get_permalink($project->ID); ?>" data-cursor-project="<?= $project->post_title; ?>">
                         <?php if ($thumbnails['main_image'] && $thumbnails['hovered_video']) : ?>
                             <img class="w-full object-cover transition-opacity duration-500 opacity-100 z-10 group-[.active]:opacity-0 group-hover:lg:opacity-0" src="<?= $thumbnails['main_image']['url']; ?>" alt="<?= $thumbnails['main_image']['alt']; ?>">
                             <video preload="none" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 lg:opacity-0 group-hover:lg:opacity-100" width="<?= $thumbnails['hovered_video']['width']; ?>" height="<?= $thumbnails['hovered_video']['height']; ?>" playsinline muted loop>

@@ -25,10 +25,10 @@ $next_post = get_looping_adjacent_post(false);
         </a>
     </section>
 <?php endif; ?>
-<section class="container px-site-mobile py-5 lg:pt-48 lg:px-site-desktop lg:pb-[3.125rem]" id="project-details">
+<section class="container py-5 lg:pt-48 lg:pb-[3.125rem]" id="project-details">
     <div class="pb-5 border-b-2 lg:grid grid-cols-2 lg:gap-[4.375rem] lg:pb-32">
         <div>
-            <h1 class="text-34px font-extrabold lg:text-60px lg:font-bold"><?php the_title(); ?></h1>
+            <h1 class="text-34px lg:text-60px lg:font-bold"><?php the_title(); ?></h1>
 
             <?php if ($fields['entry_content']) : ?>
                 <div class="mt-3 font-medium lg:text-28px">
@@ -47,7 +47,7 @@ $next_post = get_looping_adjacent_post(false);
         <?php endif; ?>
     </div>
 </section>
-<section class="container px-site-mobile lg:px-site-desktop">
+<section class="container">
     
     <?php if ($fields['content']) : ?>
         <div class="image-grid grid gap-5 lg:gap-8">

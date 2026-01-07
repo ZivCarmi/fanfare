@@ -26,35 +26,8 @@
   font-weight: 700;
   font-style: normal;
 }
-@font-face {
-  font-family: "Regular";
-  src: url("../fonts/Regular-Extrabold.otf") format("opentype");
-  font-weight: 800;
-  font-style: normal;
-}
-
-:root {
-  --container-width: 1436px;
-}
 
 @layer base {
-  :root {
-    --background: 214.29deg 24.14% 94.31%;
-    --foreground: 0 0% 3.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-  }
-
   .dark {
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
@@ -70,8 +43,6 @@
 
     --secondary: 64.76deg 100% 49.41%;
     --secondary-foreground: 0 0% 0%;
-
-    --radius: 0.5rem;
   }
 }
 
@@ -106,41 +77,6 @@ html {
   line-height: 1.125rem;
   font-weight: 400;
   scroll-behavior: smooth;
-}
-
-body,
-body a,
-body button {
-  cursor: none;
-}
-
-.cursor-mode #site-cursor {
-  @apply opacity-100;
-}
-
-#site-cursor.text {
-  @apply mix-blend-difference;
-}
-
-#site-cursor.text .cursor-circle {
-  @apply bg-primary;
-}
-
-#site-cursor.text ~ #site-cursor-overlay {
-  @apply block;
-}
-
-#site-cursor .project-name {
-  transition: width 0.3s;
-}
-
-#site-cursor .project-name div {
-  @apply px-4 opacity-0 text-transparent tracking-widest;
-  transition: all 0.5s;
-}
-
-#site-cursor.project .project-name div {
-  @apply text-inherit opacity-100;
 }
 
 a {
@@ -180,6 +116,14 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+#site-navigation {
+  @apply relative;
+}
+
+#site-navigation .menu {
+  @apply flex gap-4;
 }
 
 #site-navigation .menu a {
@@ -373,4 +317,42 @@ body.single-work .slider-gallery {
 
 body.single-work .slider-gallery.active {
   @apply block;
+}
+
+@media (min-width: 1024px) {
+  /* body,
+  body a,
+  body button,
+  [role="button"] {
+    cursor: none;
+  } */
+
+  .cursor-mode #site-cursor {
+    @apply opacity-100;
+  }
+
+  #site-cursor.text {
+    @apply mix-blend-difference;
+  }
+
+  #site-cursor.text .cursor-circle {
+    @apply bg-primary;
+  }
+
+  #site-cursor.text ~ #site-cursor-overlay {
+    @apply block;
+  }
+
+  #site-cursor .project-name {
+    transition: width 0.3s;
+  }
+
+  #site-cursor .project-name div {
+    @apply px-4 opacity-0 text-transparent tracking-widest;
+    transition: all 0.5s;
+  }
+
+  #site-cursor.project .project-name div {
+    @apply text-inherit opacity-100;
+  }
 }
