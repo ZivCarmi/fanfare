@@ -90,6 +90,9 @@ function fanfare_setup() {
 }
 add_action( 'after_setup_theme', 'fanfare_setup' );
 
+// remove wordpress core features
+require TEMPLATE_DIRECTORY . '/inc/remove-core-features.php';
+
 // theme helper functions
 require TEMPLATE_DIRECTORY . '/inc/helpers.php';
 
@@ -98,9 +101,6 @@ require TEMPLATE_DIRECTORY . '/inc/enqueue.php';
 
 // registering content
 require TEMPLATE_DIRECTORY . '/inc/register.php';
-
-// remove wordpress core features
-require TEMPLATE_DIRECTORY . '/inc/remove-core-features.php';
 
 // Theme filters
 require TEMPLATE_DIRECTORY . '/inc/actions.php';

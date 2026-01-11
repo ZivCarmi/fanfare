@@ -31,7 +31,7 @@
       }
 
       $(".swiper-wrapper").append(
-        `<div class="swiper-slide !h-auto"><div class="h-dvh flex items-center justify-center">${assetHtml}</div></div>`
+        `<div class="swiper-slide !h-auto"><div class="h-dvh flex justify-center">${assetHtml}</div></div>`
       );
 
       if (isClickedOnThisVideo) {
