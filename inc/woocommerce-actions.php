@@ -91,7 +91,11 @@ add_action('woocommerce_single_product_summary', function () {
 
 // add plus and minus buttons for quantity
 add_action('woocommerce_before_quantity_input_field', function () {
-    echo '<p class="label">Quantity</p><div class="quantity-wrapper"><button type="button" class="qty-minus">−</button>';
+    if (is_product()) {
+        echo '<p class="label">Quantity</p>';
+    }
+
+    echo '<div class="quantity-wrapper"><button type="button" class="qty-minus">−</button>';
 });
 add_action('woocommerce_after_quantity_input_field', function () {
     echo '<button type="button" class="qty-plus">+</button></div>';
@@ -143,3 +147,14 @@ add_action('wp_footer', 'add_mini_cart_nonce');
 function add_mini_cart_nonce() {
     echo '<script>document.body.setAttribute("data-mini-cart-nonce", "' . wp_create_nonce('mini-cart-nonce') . '");</script>';
 }
+
+// -----------------------------------------
+// Cart Page
+// -----------------------------------------
+// add wrapper for cart content
+add_action('woocommerce_before_cart', function () {
+    echo '<div class="container">';
+}, 5);
+add_action('woocommerce_after_cart', function () {
+    echo '</div>';
+}, 10);

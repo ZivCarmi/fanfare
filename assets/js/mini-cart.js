@@ -53,31 +53,46 @@
     });
   }
 
-  $(document).on("click", ".quantity button", function (e) {
+  let timeout = null;
+  let pendingQty = null;
+  let originalQty = null;
+
+  $(document).on("click", ".mini-cart-qty button", function (e) {
     e.preventDefault();
 
     const $button = $(this);
     const $quantityDiv = $button.closest(".quantity");
-    const $input = $quantityDiv.find("input.qty");
-    const cartItemKey = $quantityDiv.data("cart-item-key");
-    const currentQty = parseInt($input.val());
-    let newQty = currentQty;
+    const $qty = $quantityDiv.find("input.qty");
 
-    if ($miniCart.hasClass("loading")) {
-      return;
+    const min = parseFloat($qty.attr("min")) || 1;
+    const max = parseFloat($qty.attr("max")) || Infinity;
+    const step = parseFloat($qty.attr("step")) || 1;
+    const cartItemKey = $quantityDiv.data("cart-item-key");
+
+    // Store original quantity on first click
+    if (pendingQty === null) {
+      originalQty = parseInt($qty.val(), 10);
+      pendingQty = originalQty;
     }
 
     if ($button.hasClass("plus")) {
-      newQty = currentQty + 1;
-    } else if ($button.hasClass("minus") && currentQty > 1) {
-      newQty = currentQty - 1;
+      pendingQty = Math.min(pendingQty + step, max);
+    } else if ($button.hasClass("minus")) {
+      pendingQty = Math.max(pendingQty - step, min);
     }
 
-    if (newQty !== currentQty) {
-      $miniCart.addClass("loading");
-      $input.val(newQty);
-      updateCartQuantity(cartItemKey, newQty);
-    }
+    $qty.val(pendingQty);
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      if (pendingQty !== originalQty) {
+        $miniCart.addClass("loading");
+        updateCartQuantity(cartItemKey, pendingQty);
+      }
+      pendingQty = null;
+      originalQty = null;
+    }, 400);
   });
 
   function updateCartQuantity(cartItemKey, quantity) {

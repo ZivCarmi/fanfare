@@ -858,6 +858,10 @@ video {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .grid {
   display: grid;
 }
@@ -902,10 +906,6 @@ video {
   height: 49px;
 }
 
-.h-\[50dvh\] {
-  height: 50dvh;
-}
-
 .h-\[55px\] {
   height: 55px;
 }
@@ -948,10 +948,6 @@ video {
 
 .h-hero-screen {
   height: calc(100dvh - 64px);
-}
-
-.h-\[80dvh\] {
-  height: 80dvh;
 }
 
 .max-h-dvh {
@@ -1369,6 +1365,10 @@ video {
   mix-blend-mode: darken;
 }
 
+.mix-blend-difference {
+  mix-blend-mode: difference;
+}
+
 .contrast-100 {
   --tw-contrast: contrast(1);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -1487,13 +1487,45 @@ html {
   scroll-behavior: smooth;
 }
 
+.screen-reader-text {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal!important
+}
+
+.screen-reader-text:focus {
+  background-color: #ddd;
+  clip-path: none;
+  color: #444;
+  display: block;
+  font-size: 1em;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000
+}
+
 a {
-  color: #ffffff;
-  transition: color 0.5s ease-in-out;
+  color: hsl(var(--foreground));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 a:after {
-  transition: opacity 0.5s ease-in-out;
+  transition-property: opacity;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button {
@@ -1501,8 +1533,8 @@ button {
   align-items: center;
   justify-content: center;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-duration: 500ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
 }
 
 .boxed-button {
@@ -2192,6 +2224,10 @@ body.single-work .slider-gallery.active {
     height: 74px;
   }
 
+  .lg\:h-\[80dvh\] {
+    height: 80dvh;
+  }
+
   .lg\:h-\[88px\] {
     height: 88px;
   }
@@ -2206,10 +2242,6 @@ body.single-work .slider-gallery.active {
 
   .lg\:h-dvh {
     height: 100dvh;
-  }
-
-  .lg\:h-\[80dvh\] {
-    height: 80dvh;
   }
 
   .lg\:w-1\/2 {
