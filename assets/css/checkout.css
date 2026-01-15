@@ -1,0 +1,224 @@
+main {
+  padding-top: 1rem;
+}
+
+main .container {
+    max-width: 1600px;
+    width: 100%;
+}
+
+.woocommerce-NoticeGroup-checkout {
+    display: none;
+}
+
+.woocommerce-form-coupon,
+.woocommerce-form-coupon-toggle,
+.woocommerce-message[role="alert"] {
+    display: none !important;
+}
+
+form.woocommerce-checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+form.woocommerce-checkout > * {
+    flex: 1 0 0;
+    width: 100%;
+}
+
+.col2-set,
+.woocommerce-shipping-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.woocommerce-billing-fields,
+.order-review-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.woocommerce-billing-fields h3,
+.order-review h3 {
+    font-size: 2.125rem;
+    line-height: 2.3125rem;
+    font-weight: 700;
+}
+
+.woocommerce-billing-fields__field-wrapper,
+.woocommerce-shipping-fields__field-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.form-row-first {
+    grid-column-start: 1;
+}
+
+.form-row-last {
+    grid-column-start: 2;
+}
+
+.form-row-wide {
+    grid-column-start: span 2;
+}
+
+.form-row label {
+    display: block;
+    padding-bottom: 0.25rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.form-row input {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.checkout-inline-error-message {
+    padding-top: 0.25rem;
+}
+
+.woocommerce-additional-fields h3 {
+    display: none;
+}
+
+.order-review-wrapper {
+    padding: 1.25rem;
+    border-radius: 16px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.woocommerce-checkout-review-order-table tr > * {
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    text-align: start;
+}
+
+.woocommerce-checkout-review-order-table tbody tr:first-child > * {
+    padding-top: 0;
+}
+
+.woocommerce-checkout-review-order-table th {
+    text-transform: uppercase;
+}
+
+.woocommerce-checkout-review-order-table td:not(.product-name):not(.coupon-form) {
+    text-align: end;
+}
+
+.order-review thead {
+    display: none;
+}
+
+.product-name .product-thumbnail-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.product-name .product-name-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name img {
+    width: 100px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.coupon-form .input-wrapper {
+    border: 1px solid;
+    border-radius: 10px;
+    display: flex;
+    height: 60px;
+}
+
+.coupon-form input {
+    border: none;
+}
+
+.coupon-form .button[type="button"] {
+    background-color: transparent;
+    color: hsl(9.13deg 100% 54.9%);
+}
+
+.coupon-form .button[type="button"]:hover {
+    background-color: transparent;
+    color: hsl(9.13deg 100% 54.9%);
+}
+
+.woocommerce-checkout-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+}
+
+.place-order {
+    display: flex;
+    flex-direction: column;
+}
+
+.woocommerce {
+    height: 100%;
+}
+
+.cart-errors-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+}
+
+.cart-errors-wrapper p {
+    text-align: center;
+    max-width: 500px;
+    text-wrap-style: pretty;
+}
+
+@media (min-width: 1024px) {
+    main {
+        padding-top: 3rem;
+    }
+
+    form.woocommerce-checkout {
+        flex-direction: row;
+        gap: 5vw;
+    }
+
+    .woocommerce-billing-fields h3,
+    .order-review h3 {
+        font-size: 3.75rem;
+        line-height: 3.375rem;
+    }
+
+    .woocommerce-billing-fields,
+    .order-review-wrapper {
+        gap: 2rem;
+    }
+    
+    .order-review {
+        height: 100%;
+        position: sticky;
+        top: 64px;
+        padding-top: 2.25rem;
+        padding-bottom: 2.25rem;
+    }
+
+    .woocommerce-checkout-review-order-table tr > * {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
+}

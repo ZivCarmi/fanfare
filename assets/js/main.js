@@ -187,6 +187,14 @@
       shouldUseCustomCursor();
     }, 500);
   });
+
+  $(document.body).on("added_to_cart", function () {
+    $(".mini-cart-dropdown").addClass("show");
+
+    setTimeout(() => {
+      $(".mini-cart-dropdown").removeClass("show");
+    }, 4000);
+  });
 })(jQuery);
 
 const videos = document.querySelectorAll("video[data-lazy-load]"); // Select ALL the Videos

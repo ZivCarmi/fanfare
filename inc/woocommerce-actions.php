@@ -106,9 +106,7 @@ remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_re
 
 // add related products in single product page
 add_action('woocommerce_after_single_product', function () {
-    echo '<div class="related-products-wrapper">';
     woocommerce_output_related_products();
-    echo '</div>';
 }, 5);
 
 // remove single product meta
@@ -117,7 +115,7 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 // mini cart shipping line
 add_action('woocommerce_widget_shopping_cart_before_buttons', 'add_shipping_info_to_mini_cart');
 function add_shipping_info_to_mini_cart() {
-    echo '<div class="mini-cart-shipping"><span>SHIPPING</span><span>FREE</span></div>';
+    echo '<div class="mini-cart-shipping"><span>SHIPPING</span><span>Free</span></div>';
 }
 
 // update mini cart after quantity change
@@ -158,3 +156,35 @@ add_action('woocommerce_before_cart', function () {
 add_action('woocommerce_after_cart', function () {
     echo '</div>';
 }, 10);
+
+// -----------------------------------------
+// Checkout Page
+// -----------------------------------------
+// Wrap checkout content with .container (inside .woocommerce)
+add_action('woocommerce_before_checkout_form', function () {
+    echo '<div class="container">';
+}, 5);
+
+add_action('woocommerce_after_checkout_form', function () {
+    echo '</div>';
+}, 50);
+
+// add wrapper for order review
+add_action('woocommerce_checkout_before_order_review_heading', function () {
+    echo '<div class="order-review"><div class="order-review-wrapper">';
+}, 10);
+add_action('woocommerce_checkout_after_order_review', function () {
+    echo '</div></div>';
+}, 10);
+
+// Add coupon to subtotal
+add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_checkout_coupon_form_custom' );
+function woocommerce_checkout_coupon_form_custom() {
+    echo '<tr class="coupon-row"><td class="coupon-form" colspan="2">
+        <p class="form-row input-wrapper woocommerce-validated">
+            <input type="text" name="coupon_code" class="input-text" placeholder="' . __("Coupon code") . '" id="coupon_code" value="">
+            <button type="button" class="button" name="apply_coupon" value="' . __("Apply coupon") . '">' . __("Apply") . '</button>
+        </p>
+    </tr></td>';
+}
+

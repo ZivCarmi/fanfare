@@ -5,16 +5,3 @@
     flex-direction: column;
     gap: 4rem;
 }
-
-.woocommerce-products-header__title {
-    font-size: 22px;
-    line-height: 2.3125rem;
-}
-
-@media (min-width: 1024px) {
-    .woocommerce-products-header__title {
-        font-size: 3.75rem;
-        line-height: 3.375rem;
-        font-weight: 700;
-    }
-}

@@ -28,7 +28,7 @@ $next_post = get_looping_adjacent_post(false);
 <section class="container py-5 lg:pt-48 lg:pb-[3.125rem]" id="project-details">
     <div class="pb-5 border-b-2 lg:grid grid-cols-2 lg:gap-[4.375rem] lg:pb-32">
         <div>
-            <h1 class="text-34px lg:text-60px lg:font-bold"><?php the_title(); ?></h1>
+            <h1 class="text-34px font-bold lg:text-60px"><?php the_title(); ?></h1>
 
             <?php if ($fields['entry_content']) : ?>
                 <div class="mt-3 font-medium lg:text-28px">

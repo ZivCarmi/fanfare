@@ -27,7 +27,7 @@
 		<?php wp_body_open(); ?>
 
 		<div class="main-container min-h-dvh grid grid-rows-[auto_1fr_auto] bg-background">
-			<header id="site-header" class="pt-6 h-header-height sticky top-0 w-full z-10">
+			<header id="site-header" class="pt-6 h-header-height sticky top-0 w-full z-20">
 				<div class="container">
 					<div id="site-navigation">
 						<nav class="flex justify-between items-center">
@@ -50,5 +50,18 @@
 				</div>
 			</header>
 
+			<div class="select-none pointer-events-none h-[180px] fixed z-10 top-0 left-0 right-0">
+				<div class="absolute inset-0 overflow-hidden">
+					<div style="opacity: 1; position: absolute; inset: 0px; z-index: 1; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 25%, rgba(0, 0, 0, 0) 37.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.046875px); will-change: auto;"></div>
+					<div style="opacity: 1; position: absolute; inset: 0px; z-index: 2; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgb(0, 0, 0) 25%, rgb(0, 0, 0) 37.5%, rgba(0, 0, 0, 0) 50%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.09375px); will-change: auto;"></div>
+					<div style="opacity: 1; position: absolute; inset: 0px; z-index: 3; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgb(0, 0, 0) 37.5%, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0) 62.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.1875px); will-change: auto;"></div>
+					<div style="opacity: 1; position: absolute; inset: 0px; z-index: 4; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 62.5%, rgba(0, 0, 0, 0) 75%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.375px); will-change: auto;"></div>
+					<div style="opacity: 1; position: absolute; inset: 0px; z-index: 5; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgb(0, 0, 0) 62.5%, rgb(0, 0, 0) 75%, rgba(0, 0, 0, 0) 87.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.75px); will-change: auto;"></div>
+					<div style="opacity: 1; position: absolute; inset: 0px; z-index: 6; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgb(0, 0, 0) 75%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(1.5px); will-change: auto;"></div>
+					<div style="opacity: 1; position: absolute; inset: 0px; z-index: 7; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 87.5%, rgb(0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(3px); will-change: auto;"></div>
+					<div style="opacity: 1; position: absolute; inset: 0px; z-index: 8; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgb(0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(6px); will-change: auto;"></div>
+				</div>
+			</div>
+			
 			<main>
 				

@@ -80,31 +80,31 @@ html {
 }
 
 .screen-reader-text {
-    border: 0;
-    clip-path: inset(50%);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    word-wrap: normal!important
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
 }
 
 .screen-reader-text:focus {
-    background-color: #ddd;
-    clip-path: none;
-    color: #444;
-    display: block;
-    font-size: 1em;
-    height: auto;
-    left: 5px;
-    line-height: normal;
-    padding: 15px 23px 14px;
-    text-decoration: none;
-    top: 5px;
-    width: auto;
-    z-index: 100000
+  background-color: #ddd;
+  clip-path: none;
+  color: #444;
+  display: block;
+  font-size: 1em;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
 }
 
 a {
@@ -115,8 +115,64 @@ a:after {
   @apply transition-opacity duration-500 ease-in-out;
 }
 
-button {
-  @apply inline-flex items-center justify-center transition-colors duration-500 ease-in-out;
+button[type="submit"],
+.button {
+  @apply inline-flex items-center justify-center py-4 px-5 bg-primary text-white transition-colors capitalize rounded-10px text-22px duration-500 ease-in-out;
+}
+
+button[type="submit"]:not(.disabled):not(:disabled):hover,
+.button:not(.disabled):not(:disabled):hover {
+  @apply bg-secondary text-black;
+}
+
+textarea,
+input {
+  background-color: transparent;
+}
+
+select {
+  background-color: hsl(var(--background));
+}
+
+select,
+textarea,
+input:not([type="checkbox"]):not([type="radio"]) {
+  border-width: 1px;
+  color: inherit;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
+
+select:focus,
+textarea:focus,
+input:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+}
+
+textarea {
+  min-height: 120px;
+  height: 38px;
+  padding: 1rem;
+}
+
+input[type="number"] {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+[role="alert"] {
+  padding-bottom: 1.5rem;
+  outline: none;
+  color: hsl(var(--primary));
 }
 
 .boxed-button {

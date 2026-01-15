@@ -33,6 +33,9 @@ function fanfare_styles() {
 	} else if (is_cart()) {
 		wp_enqueue_style('cart-style', TEMPLATE_DIRECTORY_URI . '/css/cart.css' . FILES_VERSION, []);
 		wp_enqueue_script('cart-script', TEMPLATE_DIRECTORY_URI . '/js/cart.js' . FILES_VERSION, ['jquery'], null, true);
+	} else if (is_checkout()) {
+		wp_enqueue_style('checkout-style', TEMPLATE_DIRECTORY_URI . '/css/checkout.css' . FILES_VERSION, []);
+		wp_enqueue_script('checkout-script', TEMPLATE_DIRECTORY_URI . '/js/checkout.js' . FILES_VERSION, ['jquery'], null, true);
 	}
 
     wp_enqueue_script('fanfare-script', TEMPLATE_DIRECTORY_URI . '/js/main.js' . FILES_VERSION, ['jquery'], null, true);

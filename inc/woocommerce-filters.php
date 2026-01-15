@@ -84,3 +84,31 @@ add_filter('woocommerce_cart_shipping_method_full_label', function ($label, $met
 
 // Remove "Shipping options will be updated during checkout" notice
 add_filter('woocommerce_shipping_may_be_available_html', '__return_empty_string');
+
+// Move WooCommerce checkout field errors under each input
+add_filter('woocommerce_checkout_fields', function ($fields) {
+    foreach ($fields as &$group) {
+        foreach ($group as &$field) {
+            $field['class'][] = 'wc-inline-error';
+        }
+    }
+    return $fields;
+});
+
+add_filter('woocommerce_form_field', function ($field_html, $key, $args, $value) {
+    if (!empty($args['errors'])) {
+        $field_html .= '<div class="field-error">' . esc_html($args['errors'][0]) . '</div>';
+    }
+    return $field_html;
+}, 10, 4);
+
+// Remove "Billing"/"Shipping" prefix from checkout error messages (keep original text)
+add_filter('woocommerce_checkout_required_field_notice', function ($message, $field_label) {
+    return str_replace(
+        [$field_label . ' ', 'Billing ', 'Shipping '],
+        '',
+        $message
+    );
+}, 10, 2);
+
+add_filter('wp_img_tag_add_auto_sizes', '__return_false');
