@@ -22,9 +22,8 @@ div.product .product-thumbnails-wrapper {
 
 div.product .product-thumbnails-wrapper img {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
   height: auto;
+  object-fit: cover;
   border-radius: 16px;
 }
 
@@ -178,7 +177,8 @@ form.cart .quantity input {
     line-height: 1;
   }
 
-  div.product .description {
+  div.product .description,
+  div.product .stock {
     font-size: 1.375rem;
     line-height: 1.5rem;
   }

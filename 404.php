@@ -4,7 +4,7 @@ get_header();
 
 $fields = [
 	'404_image' => get_field('404_image', 'option'),
-]
+];
 ?>
 
 <section class="flex flex-col items-center gap-6 text-center pt-32 px-site-mobile lg:px-site-desktop">

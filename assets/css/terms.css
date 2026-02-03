@@ -1,0 +1,30 @@
+main {
+    padding-top: 1rem;
+    direction: rtl;
+    text-align: right;
+}
+
+main .container {
+    max-width: 800px;
+    width: 100%;
+}
+
+main .container > p {
+    line-height: 1.5;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+main .container > p a {
+    text-decoration: underline;
+}
+
+main .container > p a:hover {
+    color: hsl(var(--primary));
+}
+
+@media (min-width: 1024px) {
+    main {
+        padding-top: 3rem;
+    }
+}

@@ -3,7 +3,6 @@
 const headerHeight = "64px";
 
 module.exports = {
-  darkMode: ["class"],
   content: ["./**/*.php", "./assets/js/**/*.js"],
   theme: {
     screens: {
@@ -80,11 +79,6 @@ module.exports = {
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
         },
       },
       borderRadius: {

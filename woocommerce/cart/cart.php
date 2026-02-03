@@ -93,13 +93,12 @@ do_action( 'woocommerce_before_cart' ); ?>
 							echo $thumbnail; // PHPCS: XSS ok.
                             echo '<div class="product-name">' . wp_kses_post( $product_name . '&nbsp;' ) . '</div>';
 						} else {
-							// printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS: XSS ok.
                             /**
 							 * This filter is documented above.
 							 *
 							 * @since 2.1.0
 							 */
-							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s<div class="product-name">%s</div></a>', esc_url( $product_permalink ), $thumbnail, $_product->get_name() ), $cart_item, $cart_item_key ) );
+							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s<div class="text">%s</div></a>', esc_url( $product_permalink ), $thumbnail, $_product->get_name() ), $cart_item, $cart_item_key ) );
 						}
 
 						do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );

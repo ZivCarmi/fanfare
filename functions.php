@@ -109,6 +109,11 @@ require TEMPLATE_DIRECTORY . '/inc/actions.php';
 require TEMPLATE_DIRECTORY . '/inc/filters.php';
 
 if (class_exists('woocommerce')) {
+	// function to check if on wc page
+	function is_woocommerce_page () {
+		return is_woocommerce() || is_cart() || is_checkout() || is_account_page();
+	}
+
 	// Theme woocommerce actions
 	require TEMPLATE_DIRECTORY . '/inc/woocommerce-actions.php';
 

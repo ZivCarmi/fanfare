@@ -1,10 +1,20 @@
 <?php if (!defined('ABSPATH')) exit;
 
+add_filter('wp_img_tag_add_auto_sizes', '__return_false');
+
 // remove woocommerce styles
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 // remove tabs in single product 
 add_filter( 'woocommerce_product_tabs', '__return_empty_array', 98 );
+
+add_filter('body_class', 'woo_all_pages_body_class');
+function woo_all_pages_body_class ($classes) {
+    if (is_woocommerce_page()) {
+        $classes[] = 'light';
+    }
+    return $classes;
+}
 
 // add boxed-button class to add to cart button
 add_filter('woocommerce_loop_add_to_cart_link', function ($html) {
@@ -111,4 +121,36 @@ add_filter('woocommerce_checkout_required_field_notice', function ($message, $fi
     );
 }, 10, 2);
 
-add_filter('wp_img_tag_add_auto_sizes', '__return_false');
+// Change thankyou order recieved text
+add_filter('woocommerce_thankyou_order_received_text', 'custom_order_received_text', 10, 2);
+function custom_order_received_text($text, $order) {
+    return esc_html(__('Your order has been received.',));
+}
+
+add_filter('woocommerce_order_get_formatted_billing_address', function ($address, $raw_address, $order) {
+    if (!$raw_address || !is_array($raw_address)) return $address;
+
+    $lines = [];
+
+    foreach ($raw_address as $key => $value) {
+        if (!empty($value)) {
+            // מאחדים first_name + last_name
+            if ($key === 'first_name' && !empty($raw_address['last_name'])) {
+                $value = trim($raw_address['first_name'] . ' ' . $raw_address['last_name']);
+                $label = 'Name';
+            }
+            // לדלג על last_name כי כבר מאוחד
+            elseif ($key === 'last_name') {
+                continue;
+            }
+            else {
+                // יצירת label אוטומטי מה־key
+                $label = ucwords(str_replace('_', ' ', $key));
+            }
+
+            $lines[] = '<div class="order-address-line"><strong>' . esc_html($label) . ':</strong> ' . esc_html($value) . '</div>';
+        }
+    }
+
+    return implode('', $lines);
+}, 10, 3);

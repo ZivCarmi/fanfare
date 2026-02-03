@@ -1,7 +1,7 @@
 ul.products {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 3rem;
 }
 
 li.product {
@@ -13,27 +13,38 @@ li.product {
 .woocommerce-LoopProduct-link {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
+    height: 100%;
 }
 
 li.product .featured-image {
   position: relative;
+  height: 100%;
 }
 
-.onsale {
+.badge {
     position: absolute;
     top: 10px;
     left: 10px;
     background-color: hsl(var(--primary));
+    color: hsl(var(--background));
     padding: 0.25rem 0.5rem;
     border-radius: 8px;
 }
 
+.sold-out {
+    background-color: #d1d1d1;
+    color: #000000;
+}
+
+li.product.outofstock .badge.onsale {
+    display: none;
+}
+
 .woocommerce-LoopProduct-link .attachment-woocommerce_thumbnail {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    height: 100%;
     object-fit: cover;
-    height: auto;
     border-radius: 16px;
 }
 
@@ -64,6 +75,10 @@ li.product .heading {
     ul.products {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 2.25rem;
+    }
+
+    .woocommerce-LoopProduct-link {
+        gap: 0.75rem;
     }
 
     li.product .woocommerce-loop-product__title,

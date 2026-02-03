@@ -49,6 +49,7 @@ main .container {
   display: flex;
 }
 
+.cart_item .product-thumbnail .text,
 .cart_item .product-thumbnail .product-name {
   display: none;
 }
@@ -64,7 +65,8 @@ main .container {
 }
 
 .cart_item .product-thumbnail img {
-  width: 150px;
+  width: 130px;
+  object-fit: cover;
   border-radius: 4px;
 }
 
@@ -91,9 +93,9 @@ main .container {
   gap: 0.625rem;
   flex: 1 0 0;
   border-radius: 16px;
-  padding: 1.25rem;
-  background-color: #ffffff;
-  color: #000000;
+  padding: 2rem;
+  background-color: var(--card);
+  color: var(--card-foreground);
 }
 
 .cart_totals h2 {
@@ -123,12 +125,11 @@ main .container {
 
 .cart-collaterals .coupon .button[type="submit"] {
   background-color: transparent;
-  color: hsl(9.13deg 100% 54.9%);
 }
 
 .cart-collaterals .coupon .button[type="submit"]:hover {
   background-color: transparent;
-  color: hsl(9.13deg 100% 54.9%);
+  color: hsl(var(--primary));
 }
 
 .coupon-error-notice {
@@ -193,6 +194,10 @@ main:has(.wc-empty-cart-message) {
     display: table-cell;
   }
 
+  .cart_item .product-thumbnail .text {
+    display: block;
+  }
+
   .shop_table th.product-thumbnail,
   .shop_table td.product-name {
     display: none;
@@ -204,8 +209,6 @@ main:has(.wc-empty-cart-message) {
 
   .cart_item .product-thumbnail img {
     width: 100px;
-    height: 100px;
-    object-fit: cover;
   }
 
   .cart_item .quantity-wrapper {

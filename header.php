@@ -1,7 +1,7 @@
 <?php if (!defined('ABSPATH')) exit; ?>
 
 <!doctype html>
-<html <?php language_attributes(); ?> class="dark">
+<html <?php language_attributes(); ?>>
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,9 +35,9 @@
 							get_template_part('/template-parts/logo');
 							
 							wp_nav_menu([
-									'container' => false,
-									'theme_location' => 'right_menu',
-								]);
+								'container' => false,
+								'theme_location' => 'right_menu',
+							]);
 							?>
 						</nav>
 

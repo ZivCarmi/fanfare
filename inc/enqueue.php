@@ -6,7 +6,8 @@ define('TEMPLATE_DIRECTORY_URI', get_template_directory_uri() . '/assets');
 if (current_user_can('editor') || current_user_can('administrator')) {
 	define('FILES_VERSION', '?v=' . time());
 } else {
-	define('FILES_VERSION', '?v=000002');
+	define('FILES_VERSION', '?v=' . time());
+	// define('FILES_VERSION', '?v=000006');
 }
 
 // loading all js+css files
@@ -19,6 +20,8 @@ function fanfare_styles() {
 
     if (is_front_page()) {
 		wp_enqueue_script('front-page-script', TEMPLATE_DIRECTORY_URI . '/js/front-page.js' . FILES_VERSION, ['jquery'], null, true);
+	} else if (is_page_template('pages/terms.php')) {
+		wp_enqueue_style('terms-style', TEMPLATE_DIRECTORY_URI . '/css/terms.css' . FILES_VERSION, []);
 	} else if (is_post_type_archive('work')) {
 		wp_enqueue_script('work-script', TEMPLATE_DIRECTORY_URI . '/js/work.js' . FILES_VERSION, ['jquery'], null, true);
 	} else if (is_singular('work')) {
@@ -28,6 +31,8 @@ function fanfare_styles() {
 	} else if (is_shop() || (is_archive() && is_woocommerce())) {
 		wp_enqueue_style('shop-style', TEMPLATE_DIRECTORY_URI . '/css/shop.css' . FILES_VERSION, []);
 	} else if (is_product()) {
+		wp_enqueue_style('swiperjs-style', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
+		wp_enqueue_script('swiperjs-script', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], null, true);
 		wp_enqueue_style('product-style', TEMPLATE_DIRECTORY_URI . '/css/product.css' . FILES_VERSION, []);
 		wp_enqueue_script('product-script', TEMPLATE_DIRECTORY_URI . '/js/product.js' . FILES_VERSION, ['jquery'], null, true);
 	} else if (is_cart()) {

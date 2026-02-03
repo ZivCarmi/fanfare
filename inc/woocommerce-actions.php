@@ -38,14 +38,22 @@ add_action('woocommerce_before_main_content', function () {
 
     if (is_shop()) {
         $shop_page_id = wc_get_page_id('shop');
-        $hero_field = get_field('hero_image_or_video', $shop_page_id);
+        $hero_fields = [
+            'content' => get_field('hero_content', $shop_page_id),
+            'asset' => get_field('hero_image_or_video', $shop_page_id),
+            'text' => get_field('hero_text', $shop_page_id),
+        ];
     } elseif (is_product_category() || is_product_tag()) {
         $term = get_queried_object();
-        $hero_field = get_field('hero_image_or_video', $term);
+        $hero_fields = [
+            'content' => get_field('hero_content', $term),
+            'asset' => get_field('hero_image_or_video', $term),
+            'text' => get_field('hero_text', $term),
+        ];
     }
 
-    if (!empty($hero_field[0])) {
-        get_template_part('template-parts/hero-image-or-video', null, ['content' => $hero_field[0]]);
+    if (!empty($hero_fields)) {
+        get_template_part('template-parts/hero-content', null, $hero_fields);
     }
 }, 0);
 
@@ -100,6 +108,11 @@ add_action('woocommerce_before_quantity_input_field', function () {
 add_action('woocommerce_after_quantity_input_field', function () {
     echo '<button type="button" class="qty-plus">+</button></div>';
 });
+
+// add related products in single product page
+add_action('woocommerce_after_single_product', function () {
+    get_template_part('template-parts/work-slider');
+}, 0);
 
 // remove default related products
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
@@ -182,9 +195,26 @@ add_action( 'woocommerce_review_order_after_cart_contents', 'woocommerce_checkou
 function woocommerce_checkout_coupon_form_custom() {
     echo '<tr class="coupon-row"><td class="coupon-form" colspan="2">
         <p class="form-row input-wrapper woocommerce-validated">
-            <input type="text" name="coupon_code" class="input-text" placeholder="' . __("Coupon code") . '" id="coupon_code" value="">
-            <button type="button" class="button" name="apply_coupon" value="' . __("Apply coupon") . '">' . __("Apply") . '</button>
+            <input type="text" name="coupon_code" class="input-text" placeholder="' . __('Coupon code', 'woocommerce') . '" id="coupon_code" value="">
+            <button type="button" class="button" name="apply_coupon" value="' . __('Apply coupon', 'woocommerce') . '">' . __('Apply', 'woocommerce') . '</button>
         </p>
     </tr></td>';
 }
 
+// add badge class to onsale product loop
+add_filter('woocommerce_sale_flash', function ($html, $post, $product) {
+    $html = str_replace('class="onsale"', 'class="onsale badge"', $html);
+
+    return $html;
+}, 10, 3);
+
+// add sold out badge to product loop
+add_action('woocommerce_before_shop_loop_item_title', function () {
+    global $product;
+
+    if (!$product) return;
+
+    if (!$product->is_in_stock()) {
+        echo '<span class="badge sold-out">Sold Out</span>';
+    }
+}, 6);

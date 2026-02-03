@@ -3,22 +3,28 @@
 			</main>
 			<footer class="bg-background">
 				<div class="container pb-4 lg:pb-8">
-					<div class="pt-4 lg:pt-8<?= isset($args['border_top']) ? ' border-t' : ''; ?>">
+					<div class="pt-4 flex flex-col gap-2 lg:gap-4 lg:pt-8<?= isset($args['border_top']) ? ' border-t' : ''; ?>">
 						<?php if ($email = get_field('footer_email', 'option')) : ?>
-							<a class="text-[8.8vw] leading-none font-bold cursor-email lg:text-6xl" href="mailto:<?= strtolower($email); ?>" data-cursor-tooltip="HIT<br />ME!"><?= $email; ?></a>
+							<a class="font-bold cursor-email" href="mailto:<?= strtolower($email); ?>" target="_blank" data-cursor-tooltip="HIT<br />ME!">
+								<svg class="lg:w-[590px]" viewBox="0 0 158 18">
+									<text x="0" y="14"><?= $email; ?></text>
+								</svg>
+							</a>
 						<?php endif; ?>
-						<div class="flex flex-col justify-between gap-5 mt-2 text-22px lg:flex-row lg:mt-4 lg:text-36px">
-							<?php if ($socials = get_field('footer_socials', 'option')) : ?>
-								<ul class="flex items-center flex-wrap gap-5">
-									<?php foreach ($socials as $social) : ?>
-										<li>
-											<a class="hoverable" href="<?= $social['link']['url']; ?>" target="<?= $social['link']['target']; ?>">
-												<?= $social['link']['title']; ?>
-											</a>
-										</li>
-									<?php endforeach; ?>
-								</ul>
-							<?php endif; ?>
+						<div class="flex flex-col justify-between gap-2 lg:gap-4 text-22px lg:flex-row lg:text-36px">
+							<div class="flex">
+								<?php if ($socials = get_field('footer_socials', 'option')) : ?>
+									<ul class="flex items-center flex-wrap gap-5">
+										<?php foreach ($socials as $social) : ?>
+											<li>
+												<a class="hoverable" href="<?= $social['link']['url']; ?>" target="<?= $social['link']['target']; ?>">
+													<?= $social['link']['title']; ?>
+												</a>
+											</li>
+										<?php endforeach; ?>
+									</ul>
+								<?php endif; ?>
+							</div>
 							<div class="relative flex justify-end grow overflow-hidden">
 								<div class="copyright flex items-center group">
 									<div class="year transition-transform duration-500 group-hover:-translate-x-40">©<?= date("Y"); ?></div>
