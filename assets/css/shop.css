@@ -5,3 +5,21 @@
     flex-direction: column;
     gap: 4rem;
 }
+
+.hero-text {
+    max-width: 260px;
+}
+
+.hero-text br:first-of-type {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-text br:first-of-type {
+        display: initial;
+    }
+}

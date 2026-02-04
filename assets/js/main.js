@@ -19,7 +19,7 @@
   $(document).on("mousemove", (e) => {
     $("#site-cursor, #site-cursor-overlay").css(
       "transform",
-      `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`
+      `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`,
     );
   });
 
@@ -163,7 +163,7 @@
     const isHomeWhileAtHome =
       $(document.body).hasClass("home") && url === location;
     const contactLink = $(this).closest(".contact-form").length;
-    const excludedLinks = contactLink || url.includes("#");
+    const excludedLinks = !url || contactLink || url.includes("#");
 
     // Mainly for logo link while at homepage
     if (isHomeWhileAtHome) {
@@ -209,7 +209,7 @@ if (videos.length > 0) {
         }
       });
     },
-    { threshold: 0.075 }
+    { threshold: 0.075 },
   );
 
   // Observe EACH video

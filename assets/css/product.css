@@ -1,4 +1,5 @@
 @import url("./product-loop.css");
+@import url("./lightbox.css");
 
 main {
   padding-top: 1rem;
@@ -55,6 +56,10 @@ div.product .description {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
+
+.woocommerce-product-gallery__image {
+  cursor: pointer;
 }
 
 form.cart,

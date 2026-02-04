@@ -1,63 +1,87 @@
 (($) => {
-  let swiper;
-  const assets = [];
+  let lightboxSwiper;
 
-  // Push all assets to the array
-  $(".image-grid .slider-asset").each((key, val) => {
-    const assetData = $(val).closest("[data-asset]").data("asset");
-    assets.push(assetData);
-  });
+  // Collect all work assets
+  function getWorkAssets() {
+    const assets = [];
 
-  $(".image-grid button[data-asset]").on("click", function () {
-    const data = $(this).data("asset");
-    const index = assets.findIndex((asset) => asset.url === data.url);
+    $(".work-content button[data-asset]").each(function () {
+      const assetData = $(this).data("asset");
 
-    // Clear previous slides
-    $(".swiper-wrapper").empty();
+      if (assetData.url) {
+        assets.push(assetData);
+      }
+    });
 
-    // Populate Swiper with assets
-    $(".image-grid button[data-asset]").each(function () {
-      const asset = $(this).data("asset");
-      const isClickedOnThisVideo = data.url === asset.url;
+    return assets;
+  }
+
+  // Get the index of clicked asset among all assets (not all .work-content)
+  function getAssetIndex(clickedButton) {
+    const allAssetButtons = $(".work-content button[data-asset]");
+    let index = -1;
+
+    allAssetButtons.each(function (i) {
+      if (this === clickedButton) {
+        index = i;
+        return false; // break the loop
+      }
+    });
+
+    return index;
+  }
+
+  // Initialize Swiper
+  function initLightboxSwiper(startIndex = 0) {
+    const assets = getWorkAssets();
+
+    if (assets.length === 0) {
+      console.warn("No assets found");
+      return;
+    }
+
+    const swiperWrapper = $(".slider-gallery .swiper-wrapper");
+
+    // Clear existing slides
+    swiperWrapper.empty();
+
+    // Add slides based on asset type
+    assets.forEach(function (asset) {
       let assetHtml;
 
       if (asset.type === "image") {
         assetHtml = `<img src="${asset.url}" alt="" />`;
       } else if (asset.type === "video") {
-        assetHtml = `<video src="${asset.url}" playsinline loop></video>`;
+        assetHtml = `<video src="${asset.url}" playsinline loop>Your browser does not support the video tag.</video>`;
         if (asset.manual) {
           assetHtml += `<button class="toggle-mute hoverable absolute bottom-4 left-4 z-10 p-4">Mute</button>`;
         }
       }
 
-      $(".swiper-wrapper").append(
-        `<div class="swiper-slide !h-auto"><div class="h-dvh flex justify-center">${assetHtml}</div></div>`
-      );
-
-      if (isClickedOnThisVideo) {
-        $(".swiper-wrapper .swiper-slide-active video").trigger("play");
-      }
+      // Append all HTML assets
+      swiperWrapper.append(`<div class="swiper-slide">${assetHtml}</div>`);
     });
 
-    // Show fullscreen gallery
-    $(document.body).addClass("overflow-hidden");
-    $(".slider-gallery").fadeIn().addClass("active");
-
     // Initialize or update Swiper
-    if (swiper) {
-      swiper.activeIndex = index;
-      swiper.update();
+    if (lightboxSwiper) {
+      lightboxSwiper.activeIndex = startIndex;
+      lightboxSwiper.update();
     } else {
-      swiper = new Swiper(".swiper", {
-        loop: true,
+      lightboxSwiper = new Swiper(".slider-gallery .swiper", {
+        initialSlide: startIndex,
+        loop: assets.length > 1,
+        navigation: {
+          nextEl: ".slide-to-next",
+          prevEl: ".slide-to-prev",
+        },
         keyboard: {
           enabled: true,
+          onlyInViewport: false,
         },
-        initialSlide: index,
       });
 
       // Triggers the next video slide to play and pause the previous
-      swiper.on("slideChange", function (_swiper) {
+      lightboxSwiper.on("slideChange", function (_swiper) {
         const prevSlide = _swiper.slides[_swiper.previousIndex];
         const activeSlide = _swiper.slides[_swiper.activeIndex];
 
@@ -65,17 +89,60 @@
         $(activeSlide).find("video")?.trigger("play");
       });
 
-      const activeSlide = swiper.slides[swiper.activeIndex];
+      const activeSlide = lightboxSwiper.slides[lightboxSwiper.activeIndex];
 
       // Triggers the first video to play
       if ($(activeSlide).hasClass("swiper-slide-active")) {
         $(activeSlide).find("video").trigger("play");
       }
     }
+  }
+
+  // Open lightbox
+  function openLightbox(index) {
+    initLightboxSwiper(index);
+    $(".slider-gallery").addClass("active").css("display", "block");
+    $("body").addClass("overflow-hidden");
+  }
+
+  // Close lightbox
+  function closeLightbox() {
+    $(".slider-gallery").removeClass("active").css("display", "none");
+    $("body").removeClass("overflow-hidden");
+
+    // Pause all videos
+    $(".slider-gallery video").each(function () {
+      this.pause();
+    });
+  }
+
+  // Handle work content asset clicks
+  $(document).on("click", ".work-content button[data-asset]", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const index = getAssetIndex(this);
+
+    if (index !== -1) {
+      openLightbox(index);
+    }
+  });
+
+  // Close button handler
+  $(document).on("click", ".slider-gallery .close-btn", function (e) {
+    e.preventDefault();
+    closeLightbox();
+  });
+
+  // ESC key to close
+  $(document).keyup(function (e) {
+    if (e.key === "Escape" && $(".slider-gallery").hasClass("active")) {
+      closeLightbox();
+    }
   });
 
   // Toggle sound for video slide
-  $(".swiper").on("click", ".toggle-mute", function () {
+  $(".slider-gallery").on("click", ".toggle-mute", function () {
     const video = $(this).prev("video");
     const isMuted = $(video).prop("muted");
 
@@ -85,51 +152,6 @@
     } else {
       $(this).text("Unmute");
       $(video).prop("muted", true);
-    }
-  });
-
-  // Close gallery when clicking "X"
-  $(".close-btn").on("click", function () {
-    $(document.body).removeClass("overflow-hidden");
-    $(".slider-gallery").fadeOut().removeClass("active");
-
-    // Stops all videos
-    $(".slider-gallery")
-      .find("video")
-      .each((key, video) => {
-        video.pause();
-      });
-  });
-
-  // Close gallery when click Esc button
-  $(document).on("keydown", function (e) {
-    const isSliderActive = $(".slider-gallery.active").length;
-
-    if (e.key == "Escape" && isSliderActive) {
-      $(".close-btn").trigger("click");
-    }
-  });
-
-  // Slide to next button
-  $(".slide-to-next").on("click", function (e) {
-    swiper.slideNext();
-  });
-
-  // Slide to prev button
-  $(".slide-to-prev").on("click", function (e) {
-    swiper.slidePrev();
-  });
-
-  // Play video on mouse enter
-  $(".manual-play-btn").on("click", function () {
-    const video = $(this).next();
-
-    $(this).closest(".video-wrapper").toggleClass("playing");
-
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
     }
   });
 })(jQuery);

@@ -61,8 +61,28 @@ add_action('woocommerce_before_main_content', function () {
 add_action('woocommerce_before_shop_loop_item_title', function () {
     echo '<div class="featured-image">';
 }, 5);
+
 add_action('woocommerce_before_shop_loop_item_title', function () {
+    global $product;
+    
+    // Get gallery image IDs
+    $gallery_image_ids = $product->get_gallery_image_ids();
+    
+    // Check if there's at least one gallery image
+    if (!empty($gallery_image_ids)) {
+        $first_gallery_id = $gallery_image_ids[0];
+        $first_gallery_image = wp_get_attachment_image_src($first_gallery_id, 'woocommerce_thumbnail');
+        
+        if ($first_gallery_image) {
+            echo '<img class="hover-image" src="' . esc_url($first_gallery_image[0]) . '" alt="' . esc_attr($product->get_name()) . '" />';
+        }
+    }
+
     echo '</div>';
+}, 10);
+
+add_action('woocommerce_before_shop_loop_item_title', function () {
+    
 }, 10);
 
 // add wrapper for product name in product loop
@@ -109,7 +129,7 @@ add_action('woocommerce_after_quantity_input_field', function () {
     echo '<button type="button" class="qty-plus">+</button></div>';
 });
 
-// add related products in single product page
+// Add slider gallery HTML to single product page
 add_action('woocommerce_after_single_product', function () {
     get_template_part('template-parts/work-slider');
 }, 0);
@@ -125,6 +145,7 @@ add_action('woocommerce_after_single_product', function () {
 // remove single product meta
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 
+// TO BE CHANGED WHEN SHIPPING METHODS EXIST
 // mini cart shipping line
 add_action('woocommerce_widget_shopping_cart_before_buttons', 'add_shipping_info_to_mini_cart');
 function add_shipping_info_to_mini_cart() {

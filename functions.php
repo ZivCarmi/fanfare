@@ -66,26 +66,7 @@ function fanfare_setup() {
 		]
 	);
 
-	/**
-	 * Add support for core custom logo.
-	 *
-	 * @link https://codex.wordpress.org/Theme_Logo
-	 */
-	add_theme_support(
-		'custom-logo',
-		array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		)
-	);
-
-	/**
-	 * Add Woocommerce support.
-	 *
-	 * @link https://codex.wordpress.org/Theme_Logo
-	 */
+	// Add Woocommerce support
 	add_theme_support('woocommerce');
 }
 add_action( 'after_setup_theme', 'fanfare_setup' );

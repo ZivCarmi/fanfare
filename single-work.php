@@ -52,7 +52,9 @@ $next_post = get_looping_adjacent_post(false);
     <?php if ($fields['content']) : ?>
         <div class="image-grid grid gap-5 lg:gap-8">
             <?php foreach ($fields['content'] as $content) : ?>
-                <?php get_template_part('template-parts/' . $content['acf_fc_layout'], null, ['content' => $content]); ?>
+                <div class="work-content">
+                    <?php get_template_part('template-parts/single-work-content/' . $content['acf_fc_layout'], null, ['content' => $content]); ?>
+                </div>
             <?php endforeach; ?>
         </div>
         <?php get_template_part('template-parts/work-slider'); ?>
@@ -69,7 +71,7 @@ $next_post = get_looping_adjacent_post(false);
         <?php endif; ?>
         <?php if (!empty($prev_post)) : ?>
             <a class="flex gap-4 ml-auto lg:gap-7" href="<?= get_permalink($prev_post->ID); ?>">
-                <div class="hoverable text-22px self-center lg:text-56px lg:font-semibold"><?= $prev_post->post_title; ?></div>
+                <div class="hoverable text-22px self-center text-right lg:text-56px lg:font-semibold"><?= $prev_post->post_title; ?></div>
                 <div class="flex items-center justify-center -me-1.5 lg:-me-3">
                     <?php get_template_part('template-parts/bumpy-pixelated-arrow', null, ['class' => '-rotate-90 w-4 lg:w-12', 'alt' => 'Next project']); ?>
                 </div>

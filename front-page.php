@@ -55,7 +55,7 @@ $divided_projects = array_chunk($projects, ceil(count($projects) / 2));
                                 Your browser does not support HTML video.
                             </video>
                         <?php elseif ($thumbnails['main_image']): ?>
-                            <div class="w-full h-full absolute inset-0 bg-primary/70 z-20 opacity-0 duration-300 group-[.active]:opacity-100 group-hover:opacity-100"></div>
+                            <div class="w-full h-full absolute inset-0 bg-primary/70 z-20 opacity-0 duration-500 group-[.active]:opacity-100 group-hover:opacity-100"></div>
                             <img class="w-full object-cover transition-opacity duration-500 opacity-100 z-10" src="<?= $thumbnails['main_image']['url']; ?>" alt="<?= $thumbnails['main_image']['alt']; ?>">
                         <?php endif; ?>
                     </a>

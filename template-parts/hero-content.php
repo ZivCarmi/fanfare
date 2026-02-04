@@ -14,7 +14,7 @@ if (!empty($content)) :
         </section>
     <?php elseif ($content === 'text' && !empty($args['text'])) : ?>
         <section class="container flex items-center justify-center pt-4 lg:pt-0 lg:-mt-header-height lg:h-[80dvh]">
-            <div class="py-20 relative z-10 text-3xl tracking-tight text-balance text-center lg:text-5xl/[1.2] lg:tracking-[0.5px]">
+            <div class="hero-text py-20 relative z-10 text-22px/[1.6rem] tracking-tight text-center lg:text-36px lg:tracking-[0.2px]">
                 <?= $args['text']; ?>
             </div>
         </section>
