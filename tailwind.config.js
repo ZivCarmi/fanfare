@@ -16,6 +16,7 @@ module.exports = {
     },
     fontFamily: {
       Regular: ['"Regular"', "ui-sans-serif"],
+      NarkissBlock: ['"NarkissBlock"', "sans-serif"],
     },
     container: {
       center: true,

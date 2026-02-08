@@ -22,7 +22,7 @@
 
 	<body <?php body_class('text-primary-foreground'); ?>>
 
-		<!-- <div id="preloader" class="loading"></div> -->
+		<div id="preloader" class="loading"></div>
 
 		<?php wp_body_open(); ?>
 

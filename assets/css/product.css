@@ -5,6 +5,18 @@ main {
   padding-top: 1rem;
 }
 
+.woocommerce-notices-wrapper .button.wc-forward {
+  color: hsl(var(--foreground));
+  background-color: transparent;
+  font-size: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.woocommerce-notices-wrapper .button.wc-forward:hover {
+  background-color: transparent;
+}
+
 div.product {
   display: flex;
   flex-direction: column-reverse;
@@ -33,12 +45,14 @@ div.product .summary {
   flex-direction: column;
   align-items: flex-start;
   gap: 1.25rem;
+  font-family: 'NarkissBlock', sans-serif;
 }
 
 div.product .product_title {
   font-size: 2.125rem;
   line-height: 2.3125rem;
   font-weight: 700;
+  font-family: 'Regular', 'sans-serif';
 }
 
 div.product .price {
@@ -50,6 +64,10 @@ div.product .price {
 div.product .description {
   max-width: 700px;
   line-height: 1.2;
+}
+
+div.product .stock {
+  color: hsl(var(--primary));
 }
 
 .woocommerce-product-gallery__wrapper {
@@ -70,7 +88,6 @@ form.cart .variations {
 form.cart {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
 }
 
 form.cart .variations th {
@@ -98,25 +115,36 @@ form.cart .variations .value {
   margin-top: 0.5rem;
 }
 
-.woocommerce-variation {
+form.cart .single_variation_wrap {
+  padding-top: 1.25rem;
+}
+
+.woocommerce-variation .stock {
+  padding-bottom: 1.25rem;
+}
+
+.woocommerce-variation .woocommerce-variation-price {
   display: none !important;
 }
 
 .woocommerce-variation-add-to-cart {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
 }
 
 form.cart .quantity {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+}
+
+form.cart .quantity .label {
+  padding-bottom: 0.5rem;
 }
 
 form.cart .quantity-wrapper {
   display: flex;
   gap: 1rem;
+  padding-bottom: 1.25rem;
 }
 
 form.cart .quantity button {
@@ -187,15 +215,23 @@ form.cart .quantity input {
     font-size: 1.375rem;
     line-height: 1.5rem;
   }
-
-  form.cart {
-    gap: 2rem;
-  }
   
   form.cart .variations .label,
   form.cart .quantity .label {
     font-size: 1.375rem;
     line-height: 1.5rem;
+  }
+
+  form.cart .single_variation_wrap {
+    padding-top: 2rem;
+  }
+
+  .woocommerce-variation .stock {
+    padding-bottom: 2rem;
+  }
+
+  form.cart .quantity-wrapper {
+    padding-bottom: 2rem;
   }
 
   .variations select {
@@ -204,10 +240,6 @@ form.cart .quantity input {
 
   .single_add_to_cart_button {
     max-width: 300px;
-  }
-
-  .woocommerce-variation-add-to-cart {
-    gap: 2rem;
   }
 
   .related {

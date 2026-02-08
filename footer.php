@@ -6,7 +6,7 @@
 					<div class="pt-4 flex flex-col gap-2 lg:gap-4 lg:pt-8<?= isset($args['border_top']) ? ' border-t' : ''; ?>">
 						<?php if ($email = get_field('footer_email', 'option')) : ?>
 							<a class="font-bold cursor-email" href="mailto:<?= strtolower($email); ?>" target="_blank" data-cursor-tooltip="HIT<br />ME!">
-								<svg class="lg:w-[590px]" viewBox="0 0 158 18">
+								<svg class="lg:w-[590px] fill-foreground" viewBox="0 0 158 18">
 									<text x="0" y="14"><?= $email; ?></text>
 								</svg>
 							</a>
@@ -37,8 +37,8 @@
 			</footer>
 		</div>
 
-		<!-- <div id="site-cursor" class="w-30px h-30px opacity-0 fixed top-0 left-0 pointer-events-none z-cursor [transform:translate3d(50vw,-50px,0)] transition-opacity duration-500 mix-blend-normal will-change-transform">
-			<div class="flex items-center justify-center text-center text-background text-[0.75rem]/[1] italic absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 origin-[50%_50%] duration-300 [backface-visibility:hidden]">
+		<div id="site-cursor" class="w-30px h-30px opacity-0 fixed top-0 left-0 pointer-events-none z-cursor [transform:translate3d(50vw,-50px,0)] transition-opacity duration-500 mix-blend-normal will-change-transform">
+			<div class="flex items-center justify-center text-center text-black text-[0.75rem]/[1] italic absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 origin-[50%_50%] duration-300 [backface-visibility:hidden]">
 				<div class="cursor-circle w-30px h-30px rounded-full bg-secondary duration-300"></div>
 				<div class="tooltip w-30px h-30px flex items-center justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 rounded-full duration-300"></div>
 				<div class="project-name w-0 h-30px flex items-center justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-full bg-secondary text-nowrap [transform:translate3d(-50%,-50%,0)]">
@@ -48,7 +48,7 @@
 		</div>
 		<div id="site-cursor-overlay" class="hidden fixed top-0 left-0 w-30px h-30px pointer-events-none z-[1001] mix-blend-darken contrast-100">
 			<div class="cursor-circle absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 origin-[50%_50%] w-30px h-30px rounded-full duration-300 [backface-visibility:hidden] bg-primary"></div>
-		</div> -->
+		</div>
 
 		<?php wp_footer(); ?>
 

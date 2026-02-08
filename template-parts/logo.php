@@ -1,5 +1,6 @@
 <?php if (!defined('ABSPATH')) exit;
 
+$url = get_site_url();
 $logo = '<svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2" viewBox="0 0 258.98 38.16">
             <g id="Layer_1-2" data-name="Layer 1">
                 <g>
@@ -17,6 +18,7 @@ $logo = '<svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" id="Lay
         </svg>';
 
 if (is_woocommerce_page()) {
+    $url = wc_get_page_permalink('shop');
     $logo = '<svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" id="Layer_2" data-name="Layer 2"  viewBox="0 0 915.53 317.37">
                 <g id="Layer_1-2" data-name="Layer 1">
                     <g id="WDL9o3">
@@ -34,6 +36,6 @@ if (is_woocommerce_page()) {
 }
 ?>
 
-<a class="site-logo-link hoverable" href="<?= get_site_url(); ?>" rel="home" title="Sagicarmi">
+<a class="site-logo-link hoverable" href="<?= $url; ?>" rel="home" title="Sagicarmi">
     <?= $logo; ?>
 </a>

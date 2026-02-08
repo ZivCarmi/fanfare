@@ -6,8 +6,7 @@ define('TEMPLATE_DIRECTORY_URI', get_template_directory_uri() . '/assets');
 if (current_user_can('editor') || current_user_can('administrator')) {
 	define('FILES_VERSION', '?v=' . time());
 } else {
-	define('FILES_VERSION', '?v=' . time());
-	// define('FILES_VERSION', '?v=000006');
+	define('FILES_VERSION', '?v=000010');
 }
 
 // loading all js+css files

@@ -38,19 +38,10 @@ main .container {
   padding-right: 0.5rem;
 }
 
-.woocommerce-cart-form__cart-item {
-  display: inline-table;
-}
-
 .woocommerce-cart-form__cart-item .product-name,
 .woocommerce-cart-form__cart-item .product-price,
 .woocommerce-cart-form__cart-item .product-quantity,
 .woocommerce-cart-form__cart-item .product-subtotal {
-  display: flex;
-}
-
-.cart_item .product-thumbnail .text,
-.cart_item .product-thumbnail .product-name {
   display: none;
 }
 
@@ -58,10 +49,22 @@ main .container {
   display: none;
 }
 
-.cart_item .product-thumbnail a {
+.cart_item .product-thumbnail-wrapper {
   display: flex;
-  align-items: center;
   gap: 1rem;
+}
+
+.cart_item .product-thumbnail-wrapper a {
+  display: block;
+}
+
+.cart_item .product-thumbnail-wrapper .product-data {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .cart_item .product-thumbnail img {
@@ -72,7 +75,17 @@ main .container {
 
 .cart_item .quantity-wrapper {
   display: flex;
-  gap: 0.75rem;
+}
+
+.cart_item .quantity-wrapper:not(:has(button)) {
+  padding-left: 8.64px;
+}
+
+.quantity-wrapper .quantity {
+  max-width: 75px;
+  width: 100%;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
 
 .cart_item .quantity button {
@@ -82,7 +95,6 @@ main .container {
 }
 
 .cart_item .quantity input {
-  max-width: 75px;
   height: 40px;
 }
 
@@ -183,10 +195,6 @@ main:has(.wc-empty-cart-message) {
     display: table-header-group;
   }
 
-  .woocommerce-cart-form__cart-item {
-    display: table-row;
-  }
-
   .woocommerce-cart-form__cart-item .product-name,
   .woocommerce-cart-form__cart-item .product-price,
   .woocommerce-cart-form__cart-item .product-quantity,
@@ -211,8 +219,13 @@ main:has(.wc-empty-cart-message) {
     width: 100px;
   }
 
-  .cart_item .quantity-wrapper {
-    gap: 1rem;
+  .cart_item .product-thumbnail-wrapper .product-data {
+    display: none;
+  }
+
+  .quantity-wrapper .quantity {
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   .cart_item .quantity input {

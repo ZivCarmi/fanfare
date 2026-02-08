@@ -27,6 +27,28 @@
   font-style: normal;
 }
 
+@font-face {
+    font-family: 'NarkissBlock';
+    src: url('../fonts/NarkissBlock-Regular.woff2') format('woff2'),
+         url('../fonts/NarkissBlock-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NarkissBlock';
+    src: url('../fonts/NarkissBlock-Medium.woff2') format('woff2'),
+         url('../fonts/NarkissBlock-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NarkissBlock';
+    src: url('../fonts/NarkissBlock-Bold.woff2') format('woff2'),
+         url('../fonts/NarkissBlock-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
 @layer base {
   :root {
     --background: 0 0% 0%;
@@ -95,6 +117,14 @@
   .slider-gallery.active {
     @apply block;
   }
+
+  .paragraph > p {
+    margin-bottom: 1rem;
+  }
+
+  .paragraph > p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 ::-moz-selection {
@@ -152,7 +182,7 @@ a:after {
 
 button[type="submit"],
 .button {
-  @apply inline-flex items-center justify-center py-4 px-5 bg-primary text-white text-center transition-colors capitalize rounded-10px text-22px duration-500 ease-in-out;
+  @apply font-Regular inline-flex items-center justify-center py-4 px-5 bg-primary text-white text-center transition-colors capitalize rounded-10px text-22px duration-500 ease-in-out;
 }
 
 button[type="submit"]:not(.disabled):not(:disabled):hover,
@@ -208,7 +238,7 @@ address {
   font-style: normal;
 }
 
-[role="alert"] {
+.woocommerce-notices-wrapper [role="alert"] {
   padding-bottom: 1.5rem;
   outline: none;
   color: hsl(var(--primary));
@@ -234,10 +264,6 @@ input[type="number"] {
 
 #site-navigation .menu a {
   @apply relative text-xl font-bold;
-}
-
-#site-navigation .menu a:hover {
-  @apply text-primary;
 }
 
 #site-navigation .contact-form a {

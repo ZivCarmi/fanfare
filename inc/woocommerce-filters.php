@@ -154,3 +154,22 @@ add_filter('woocommerce_order_get_formatted_billing_address', function ($address
 
     return implode('', $lines);
 }, 10, 3);
+
+add_filter('woocommerce_cart_item_quantity', function ($product_quantity, $cart_item_key, $cart_item) {
+    $product = $cart_item['data'];
+
+    $max_qty = $product ? $product->get_max_purchase_quantity() : 0;
+	
+    if (!$product || ($max_qty > 0 && $max_qty <= 1)) {
+        echo '<div class="quantity-wrapper">';
+            echo $product_quantity;
+        echo '</div>';
+        return;
+    }
+	
+    echo '<div class="quantity-wrapper">';
+        echo '<button type="button" class="qty-minus">−</button>';
+        echo $product_quantity;
+        echo '<button type="button" class="qty-plus">+</button>';
+    echo '</div>';
+}, 10, 3);

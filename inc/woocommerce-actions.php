@@ -77,12 +77,10 @@ add_action('woocommerce_before_shop_loop_item_title', function () {
             echo '<img class="hover-image" src="' . esc_url($first_gallery_image[0]) . '" alt="' . esc_attr($product->get_name()) . '" />';
         }
     }
-
-    echo '</div>';
 }, 10);
 
 add_action('woocommerce_before_shop_loop_item_title', function () {
-    
+     echo '</div>';
 }, 10);
 
 // add wrapper for product name in product loop
@@ -112,21 +110,42 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 add_action('woocommerce_single_product_summary', function () {
     global $product;
 
-    echo '<p class="description">';
-    echo apply_filters('get_the_content', $product->get_description());
-    echo '</p>';
+    echo '<div class="description paragraph">';
+    echo apply_filters('the_content', $product->get_description());
+    echo '</div>';
 }, 10);
 
-// add plus and minus buttons for quantity
+// add minus button for quantity in single product page
 add_action('woocommerce_before_quantity_input_field', function () {
-    if (is_product()) {
-        echo '<p class="label">Quantity</p>';
-    }
+    if (!is_product()) return;
 
-    echo '<div class="quantity-wrapper"><button type="button" class="qty-minus">−</button>';
+	global $product;
+    
+    $max_qty = $product ? $product->get_max_purchase_quantity() : 0;
+	
+    if (!$product || ($max_qty > 0 && $max_qty <= 1)) {
+        return;
+    }
+	
+    echo '<p class="label">Quantity</p>';
+        echo '<div class="quantity-wrapper">';
+            echo '<button type="button" class="qty-minus">−</button>';
 });
+
+// add plus button for quantity in single product page
 add_action('woocommerce_after_quantity_input_field', function () {
-    echo '<button type="button" class="qty-plus">+</button></div>';
+    if (!is_product()) return;
+
+    global $product;
+    
+    $max_qty = $product ? $product->get_max_purchase_quantity() : 0;
+	
+    if (!$product || ($max_qty > 0 && $max_qty <= 1)) {
+        return;
+    }
+	
+            echo '<button type="button" class="qty-plus">+</button>';
+    echo '</div>';
 });
 
 // Add slider gallery HTML to single product page

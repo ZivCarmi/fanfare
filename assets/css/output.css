@@ -668,6 +668,14 @@ input {
   display: block;
 }
 
+.paragraph > p {
+  margin-bottom: 1rem;
+}
+
+.paragraph > p:last-child {
+  margin-bottom: 0;
+}
+
 .pointer-events-none {
   pointer-events: none;
 }
@@ -1233,6 +1241,10 @@ input {
   background-color: hsl(var(--secondary));
 }
 
+.fill-foreground {
+  fill: hsl(var(--foreground));
+}
+
 .fill-primary {
   fill: hsl(var(--primary));
 }
@@ -1316,6 +1328,10 @@ input {
   text-align: right;
 }
 
+.font-NarkissBlock {
+  font-family: "NarkissBlock", sans-serif;
+}
+
 .text-22px {
   font-size: 1.375rem;
   line-height: 1.5rem;
@@ -1364,6 +1380,11 @@ input {
 
 .text-background {
   color: hsl(var(--background));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
 .text-primary {
@@ -1516,6 +1537,39 @@ input {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'NarkissBlock';
+
+  src: url('../fonts/NarkissBlock-Regular.woff2') format('woff2'),
+         url('../fonts/NarkissBlock-Regular.woff') format('woff');
+
+  font-weight: 400;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NarkissBlock';
+
+  src: url('../fonts/NarkissBlock-Medium.woff2') format('woff2'),
+         url('../fonts/NarkissBlock-Medium.woff') format('woff');
+
+  font-weight: 500;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NarkissBlock';
+
+  src: url('../fonts/NarkissBlock-Bold.woff2') format('woff2'),
+         url('../fonts/NarkissBlock-Bold.woff') format('woff');
+
+  font-weight: 700;
+
+  font-style: normal;
+}
+
 ::-moz-selection {
   color: white;
   background: #ff3c19;
@@ -1586,6 +1640,7 @@ button[type="submit"],
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   text-align: center;
+  font-family: "Regular", ui-sans-serif;
   font-size: 1.375rem;
   line-height: 1.5rem;
   text-transform: capitalize;
@@ -1651,7 +1706,7 @@ address {
   font-style: normal;
 }
 
-[role="alert"] {
+.woocommerce-notices-wrapper [role="alert"] {
   padding-bottom: 1.5rem;
   outline: none;
   color: hsl(var(--primary));
@@ -1681,10 +1736,6 @@ input[type="number"] {
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
-}
-
-#site-navigation .menu a:hover {
-  color: hsl(var(--primary));
 }
 
 #site-navigation .contact-form a {

@@ -26,6 +26,7 @@ li.product .featured-image {
     position: absolute;
     top: 10px;
     left: 10px;
+    z-index: 2;
     background-color: hsl(var(--primary));
     color: hsl(var(--background));
     padding: 0.25rem 0.5rem;
@@ -72,6 +73,7 @@ li.product .heading {
     gap: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    font-family: 'NarkissBlock', sans-serif;
 }
 
 .product.sale .price {

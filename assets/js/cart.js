@@ -8,7 +8,7 @@
       clearTimeout(timeout);
     }
 
-    const $qty = $button.siblings("input.qty");
+    const $qty = $button.siblings(".quantity").find("input");
     let current = parseFloat($qty.val());
     const min = parseFloat($qty.attr("min")) || 1;
     const max = parseFloat($qty.attr("max")) || Infinity;
@@ -22,6 +22,29 @@
       if (current - step >= min) {
         $qty.val(current - step).change();
       }
+    }
+
+    timeout = setTimeout(function () {
+      $("[name='update_cart']").trigger("click");
+    }, 500);
+  });
+
+  // Handle direct input changes
+  $(".woocommerce").on("change input", ".quantity input", function () {
+    if (timeout !== undefined) {
+      clearTimeout(timeout);
+    }
+
+    const $qty = $(this);
+    let current = parseFloat($qty.val());
+    const min = parseFloat($qty.attr("min")) || 1;
+    const max = parseFloat($qty.attr("max")) || Infinity;
+
+    // Validate and constrain the value
+    if (isNaN(current) || current < min) {
+      $qty.val(min);
+    } else if (current > max) {
+      $qty.val(max);
     }
 
     timeout = setTimeout(function () {

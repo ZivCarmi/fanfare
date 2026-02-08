@@ -133,7 +133,7 @@ h2.woocommerce-column__title {
 }
 
 .order_details tbody .product-name {
-    width: 50%;
+    width: 60%;
 }
 
 .product-name .product-thumbnail-wrapper {
@@ -242,7 +242,7 @@ main .woocommerce-order {
 }
 
 .woocommerce-order-details .product-name a {
-    color: #000000;
+    color: hsl(var(--card-foreground));
 }
 
 .woocommerce-customer-details {
