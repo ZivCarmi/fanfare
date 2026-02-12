@@ -19,12 +19,6 @@
   transform: translateY(0);
 }
 
-/* Mini Cart Container */
-/* .woocommerce-page .widget_shopping_cart_content {
-  background-color: #000000;
-  color: #000000;
-} */
-
 .widget_shopping_cart_content {
   display: flex;
   flex-direction: column;

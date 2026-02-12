@@ -77,7 +77,7 @@ h2.woocommerce-column__title {
     grid-column-start: span 2;
 }
 
-.form-row label {
+.col2-set .form-row label {
     display: block;
     padding-bottom: 0.25rem;
     font-size: 1.125rem;
@@ -91,6 +91,7 @@ h2.woocommerce-column__title {
 
 .checkout-inline-error-message {
     padding-top: 0.25rem;
+    color: hsl(var(--primary));
 }
 
 .woocommerce-additional-fields h3 {
@@ -103,6 +104,13 @@ h2.woocommerce-column__title {
     padding: 2rem;
     border-radius: 16px;
     background-color: var(--card);
+    color: var(--card-foreground);
+}
+
+.order-review-wrapper a,
+.woocommerce-order-details a,
+.woocommerce-customer-details a,
+#terms-modal .modal-content a {
     color: var(--card-foreground);
 }
 
@@ -177,13 +185,116 @@ h2.woocommerce-column__title {
 .woocommerce-checkout-payment {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 0.625rem;
     padding-top: 1.5rem;
 }
 
 .place-order {
     display: flex;
     flex-direction: column;
+    gap: 1.25rem;
+}
+
+.woocommerce-terms-and-conditions-wrapper .form-row {
+    padding-top: 0.625rem;
+}
+
+abbr {
+    text-decoration: none;
+}
+
+.woocommerce-terms-and-conditions {
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+}
+
+.woocommerce-terms-and-conditions-checkbox-text a {
+    text-decoration: underline;
+}
+
+/* Terms Modal */
+#terms-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#terms-modal.active {
+    display: flex;
+}
+
+#terms-modal .modal-box {
+    position: relative;
+    width: 90%;
+    max-width: 860px;
+}
+
+#terms-modal .modal-content {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    max-height: 80vh;
+    border-radius: 16px;
+    overflow: hidden;
+    padding-right: 1rem;
+    height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#terms-modal .modal-content-inner {
+    overflow-y: auto;
+    height: calc(100% - 2rem);
+    padding-right: 2rem;
+    padding-left: 3rem;
+}
+
+#terms-modal .modal-content-inner::-webkit-scrollbar {
+  width: 6px;
+  height: 90%;
+}
+
+#terms-modal .modal-content-inner::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+
+#terms-modal .modal-content-inner::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+#terms-modal .modal-content-inner::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+#terms-modal .modal-content p {
+    line-height: 1.5;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#terms-modal .modal-content p a {
+    text-decoration: underline;
+}
+
+#terms-modal .modal-content p a:hover {
+    color: hsl(var(--primary));
+}
+
+#terms-modal .close-modal {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    border: none;
+    width: 36px;
+    height: 36px;
+    font-size: 30px;
+    color: var(--card-foreground);
 }
 
 .cart-errors-wrapper {
@@ -239,10 +350,6 @@ main .woocommerce-order {
 .woocommerce-thankyou-order-details > * {
     flex: 1 0 0;
     text-align: center;
-}
-
-.woocommerce-order-details .product-name a {
-    color: hsl(var(--card-foreground));
 }
 
 .woocommerce-customer-details {

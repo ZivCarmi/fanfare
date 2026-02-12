@@ -6,7 +6,7 @@
     function () {
       $('form.checkout_coupon input[name="coupon_code"]').val($(this).val());
       console.log(123555);
-    }
+    },
   );
 
   // On button click, submit WooCommerce hidden default coupon form
@@ -16,7 +16,7 @@
     function () {
       $("form.checkout_coupon").submit();
       console.log(1234);
-    }
+    },
   );
 
   function syncCouponNotice() {
@@ -32,7 +32,7 @@
       $ui.append(
         '<div class="coupon-notice coupon-error checkout-inline-error-message" role="alert">' +
           $error.text() +
-          "</div>"
+          "</div>",
       );
       return;
     }
@@ -53,7 +53,7 @@
           (isRemoved ? "removed" : "success") +
           '" role="alert">' +
           text +
-          "</div>"
+          "</div>",
       );
 
       // נקה input אחרי success / removed
@@ -69,4 +69,42 @@
   $("form.checkout_coupon").on("submit", function () {
     setTimeout(syncCouponNotice, 120);
   });
+
+  document.addEventListener(
+    "click",
+    function (e) {
+      const link = e.target.closest(".woocommerce-terms-and-conditions-link");
+      if (!link) return;
+
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      const modal = document.getElementById("terms-modal");
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    },
+    true,
+  );
+
+  // סגירה
+  document.addEventListener("click", function (e) {
+    if (
+      e.target.matches("#terms-modal .close-modal") ||
+      e.target.matches("#terms-modal")
+    ) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keyup", function (e) {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
+
+  function closeModal() {
+    const modal = document.getElementById("terms-modal");
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
 })(jQuery);
