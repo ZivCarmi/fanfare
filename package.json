@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@wordpress/scripts": "^19.2.2",
-    "dir-archiver": "^1.1.1",
+    "archiver": "^7.0.1",
     "postcss-import": "^16.1.1",
     "rtlcss": "^3.5.0",
     "tailwindcss": "^3.4.12"
@@ -37,12 +37,9 @@
     "map": false
   },
   "scripts": {
-    "tw-start": "npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/output.css --watch",
-    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
-    "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
-    "compile:rtl": "rtlcss style.css style-rtl.css",
-    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
+    "tw-start": "npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/output.css --watch --minify",
+    "tw-build": "npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/output.css --minify",
     "lint:js": "wp-scripts lint-js 'js/*.js'",
-    "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock"
+    "bundle": "npm run tw-build && node bundle.js"
   }
 }
