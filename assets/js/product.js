@@ -1,7 +1,7 @@
 (($) => {
   const $price = $(".summary .price");
   let swiper;
-  const assets = [];
+  let lightboxSwiper;
 
   $("form.variations_form")
     .on("show_variation", function (event, variation) {
@@ -37,94 +37,8 @@
     }
   });
 
-  // // Push all assets to the array
-  // $(".woocommerce-product-gallery__image").each((key, val) => {
-  //   assets.push({
-  //     src: $(val).data("thumb"),
-  //     alt: $(val).data("thumb-alt"),
-  //   });
-  // });
-
-  // console.log(assets);
-
-  // $(".woocommerce-product-gallery__image a").on("click", function (e) {
-  //   e.preventDefault();
-
-  //   console.log(e);
-
-  //   console.log(1234);
-  //   return;
-
-  //   const data = $(this).data("asset");
-  //   const index = assets.findIndex((asset) => asset.url === data.url);
-
-  //   // Clear previous slides
-  //   $(".swiper-wrapper").empty();
-
-  //   // Populate Swiper with assets
-  //   $(".image-grid button[data-asset]").each(function () {
-  //     const asset = $(this).data("asset");
-  //     const assetHtml = `<img src="${asset.url}" alt="" />`;
-
-  //     $(".swiper-wrapper").append(
-  //       `<div class="swiper-slide !h-auto"><div class="h-dvh flex justify-center">${assetHtml}</div></div>`,
-  //     );
-  //   });
-
-  //   // Show fullscreen gallery
-  //   $(document.body).addClass("overflow-hidden");
-  //   $(".slider-gallery").fadeIn().addClass("active");
-
-  //   // Initialize or update Swiper
-  //   if (swiper) {
-  //     swiper.activeIndex = index;
-  //     swiper.update();
-  //   } else {
-  //     swiper = new Swiper(".swiper", {
-  //       loop: true,
-  //       keyboard: {
-  //         enabled: true,
-  //       },
-  //       initialSlide: index,
-  //     });
-  //   }
-  // });
-
-  // // Close gallery when clicking "X"
-  // $(".close-btn").on("click", function () {
-  //   $(document.body).removeClass("overflow-hidden");
-  //   $(".slider-gallery").fadeOut().removeClass("active");
-
-  //   // Stops all videos
-  //   $(".slider-gallery")
-  //     .find("video")
-  //     .each((key, video) => {
-  //       video.pause();
-  //     });
-  // });
-
-  // // Close gallery when click Esc button
-  // $(document).on("keydown", function (e) {
-  //   const isSliderActive = $(".slider-gallery.active").length;
-
-  //   if (e.key == "Escape" && isSliderActive) {
-  //     $(".close-btn").trigger("click");
-  //   }
-  // });
-
-  // // Slide to next button
-  // $(".slide-to-next").on("click", function (e) {
-  //   swiper.slideNext();
-  // });
-
-  // // Slide to prev button
-  // $(".slide-to-prev").on("click", function (e) {
-  //   swiper.slidePrev();
-  // });
-})(jQuery);
-
-jQuery(document).ready(function ($) {
-  let lightboxSwiper;
+  // so links can have the cursor effect
+  $(".description a").addClass("hoverable");
 
   // Collect all product images
   function getProductImages() {
@@ -273,4 +187,4 @@ jQuery(document).ready(function ($) {
       closeLightbox();
     }
   });
-});
+})(jQuery);

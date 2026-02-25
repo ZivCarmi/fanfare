@@ -269,7 +269,7 @@ input[type="number"] {
 }
 
 #site-navigation .menu a {
-  @apply relative text-xl font-bold;
+  @apply relative text-22px font-bold;
 }
 
 #site-navigation .menu li.current_page_item a {
