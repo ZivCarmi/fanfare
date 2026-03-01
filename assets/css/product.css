@@ -1,7 +1,7 @@
 @import url("./product-loop.css");
 @import url("./lightbox.css");
 
-main {
+main .container {
   padding-top: 1rem;
 }
 
@@ -180,7 +180,7 @@ form.cart .quantity input {
 }
 
 @media (min-width: 1024px) {
-  main {
+  main .container {
     padding-top: 3rem;
   }
 

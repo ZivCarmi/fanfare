@@ -35,6 +35,13 @@
     // Mobile: Click behavior
     $(".menu-item-cart > a").on("click", function (e) {
       e.preventDefault();
+      
+      // Close mobile menu if open
+      if ($("body").hasClass("mobile-menu-open")) {
+        $("body").removeClass("mobile-menu-open");
+        $("#mobile-menu-toggle").attr("aria-expanded", "false").attr("aria-label", "Open menu");
+      }
+      
       $("#mini-cart-dropdown").toggleClass("show");
       $("#mini-cart-overlay").toggleClass("show");
       $("body").toggleClass("mini-cart-open");

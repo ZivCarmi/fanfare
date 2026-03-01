@@ -144,10 +144,44 @@
   $(window).on("resize", (e) => {
     if (screen.width >= 1024) {
       $(document.body).removeClass("popover-active");
+      $(document.body).removeClass("mobile-menu-open");
+      $("#mobile-menu-toggle").attr("aria-expanded", "false");
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileMenuToggle = $("#mobile-menu-toggle");
+  const mobileMenuScrim = $("#mobile-menu-scrim");
+
+  function closeMobileMenu() {
+    $(document.body).removeClass("mobile-menu-open");
+    mobileMenuToggle.attr("aria-expanded", "false").attr("aria-label", "Open menu");
+  }
+
+  function openMobileMenu() {
+    $(document.body).addClass("mobile-menu-open");
+    mobileMenuToggle.attr("aria-expanded", "true").attr("aria-label", "Close menu");
+  }
+
+  mobileMenuToggle.on("click", function () {
+    if ($(document.body).hasClass("mobile-menu-open")) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  });
+
+  mobileMenuScrim.on("click", closeMobileMenu);
+
+  $(document).on("keydown", function (e) {
+    if (e.key === "Escape" && $(document.body).hasClass("mobile-menu-open")) {
+      closeMobileMenu();
     }
   });
 
   function delayedNavigation(url) {
+    $(document.body).removeClass("mobile-menu-open");
+    $("#mobile-menu-toggle").attr("aria-expanded", "false");
     preloader.removeClass("loaded").addClass("loading");
 
     setTimeout(() => {
@@ -174,6 +208,9 @@
     if (url && url.startsWith(window.location.origin) && !excludedLinks) {
       e.preventDefault(); // Prevent immediate navigation
       $("html").removeClass("cursor-mode");
+      if ($(this).closest("#mobile-menu-panel").length) {
+        closeMobileMenu();
+      }
       delayedNavigation(url); // Navigate with delay
     }
   });

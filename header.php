@@ -27,28 +27,65 @@
 		<?php wp_body_open(); ?>
 
 		<div class="main-container min-h-dvh grid grid-rows-[auto_1fr_auto] bg-background">
-			<header id="site-header" class="pt-6 h-header-height sticky top-0 w-full z-20">
-				<div class="container">
-					<div id="site-navigation">
-						<nav class="flex justify-between items-center">
-							<?php
-							get_template_part('/template-parts/logo');
-							
-							wp_nav_menu([
-								'container' => false,
-								'theme_location' => 'right_menu',
-							]);
-							?>
-						</nav>
+			<header id="site-header" class="fixed top-0 w-full z-20">
+				<div class="mobile-menu-wrapper">
+					<div class="container pt-6">
+						<div id="site-navigation">
+							<nav class="flex justify-between items-center">
+								<?php get_template_part('/template-parts/logo'); ?>
 
-						<div id="mini-cart-dropdown" class="mini-cart-dropdown">
-							<div class="widget_shopping_cart_content">
-								<?php woocommerce_mini_cart(); ?>
+								<div class="desktop-menu hidden lg:flex lg:gap-8">
+									<?php
+									wp_nav_menu([
+										'container' => false,
+										'theme_location' => 'right_menu',
+									]);
+									?>
+								</div>
+
+								<button
+									type="button"
+									id="mobile-menu-toggle"
+									class="mobile-menu-toggle-btn lg:hidden relative w-10 h-10 z-50 rounded transition-opacity hover:opacity-80 focus:outline-none"
+									aria-expanded="false"
+									aria-controls="mobile-menu-panel"
+									aria-label="<?php esc_attr_e( 'Open menu', 'sagicarmi' ); ?>"
+								>
+									<span class="mobile-menu-icon-line absolute left-1/2 w-6 h-0.5 bg-primary rounded top-[9px] -translate-x-1/2 transition-all duration-300 origin-center"></span>
+									<span class="mobile-menu-icon-line absolute left-1/2 w-6 h-0.5 bg-primary rounded top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 origin-center"></span>
+									<span class="mobile-menu-icon-line absolute left-1/2 w-6 h-0.5 bg-primary rounded bottom-[9px] -translate-x-1/2 transition-all duration-300 origin-center"></span>
+								</button>
+							</nav>
+
+							<div id="mini-cart-dropdown" class="mini-cart-dropdown">
+								<div class="widget_shopping_cart_content">
+									<?php woocommerce_mini_cart(); ?>
+								</div>
+							</div>
+						</div>
+
+						<div
+							id="mobile-menu-panel"
+							class="mobile-menu-panel lg:hidden w-full overflow-hidden transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] max-h-0 opacity-0"
+							role="dialog"
+							aria-modal="true"
+							aria-label="<?php esc_attr_e( 'Mobile menu', 'sagicarmi' ); ?>"
+						>
+							<div class="py-6">
+								<?php
+								wp_nav_menu([
+									'container' => false,
+									'theme_location' => 'right_menu',
+									'menu_class' => 'mobile-menu flex flex-col gap-6 text-22px font-bold',
+								]);
+								?>
 							</div>
 						</div>
 					</div>
 				</div>
 			</header>
+
+			<div id="mobile-menu-scrim" class="mobile-menu-scrim fixed inset-0 bg-black/40 z-10 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden" aria-hidden="true"></div>
 
 			<div class="select-none pointer-events-none h-[180px] fixed z-10 top-0 left-0 right-0">
 				<div class="absolute inset-0 overflow-hidden">

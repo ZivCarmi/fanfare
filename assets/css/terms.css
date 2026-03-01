@@ -1,5 +1,4 @@
 main {
-    padding-top: 1rem;
     direction: rtl;
     text-align: right;
 }
@@ -7,6 +6,7 @@ main {
 main .container {
     max-width: 800px;
     width: 100%;
+    padding-top: 1rem;
 }
 
 main .container > p {
@@ -24,7 +24,7 @@ main .container > p a:hover {
 }
 
 @media (min-width: 1024px) {
-    main {
+    main .container {
         padding-top: 3rem;
     }
 }

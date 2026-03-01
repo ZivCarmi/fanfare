@@ -100,6 +100,10 @@
     @apply px-site-mobile lg:px-site-desktop;
   }
 
+  main {
+    @apply pt-header-height;
+  }
+
   .boxed-button {
     @apply inline-flex py-1.5 px-3 items-center justify-center gap-5 relative text-2xl font-bold border rounded-3px transition-colors duration-500 lg:border-2 lg:text-34px;
   }
@@ -274,6 +278,48 @@ input[type="number"] {
 
 #site-navigation .menu li.current_page_item a {
 	@apply pointer-events-none cursor-default;
+}
+
+/* Mobile menu */
+body.mobile-menu-open {
+  @apply overflow-hidden;
+}
+
+body.mobile-menu-open .mobile-menu-wrapper {
+  @apply bg-background transition-colors duration-300;
+}
+
+body.mobile-menu-open .mobile-menu-scrim {
+  @apply opacity-100 pointer-events-auto;
+}
+
+body.mobile-menu-open .mobile-menu-panel {
+  max-height: 80vh;
+  opacity: 1;
+}
+
+/* Hamburger to X: lines meet at center */
+body.mobile-menu-open #mobile-menu-toggle .mobile-menu-icon-line:nth-child(1) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+body.mobile-menu-open #mobile-menu-toggle .mobile-menu-icon-line:nth-child(2) {
+  @apply opacity-0 scale-0;
+}
+
+body.mobile-menu-open #mobile-menu-toggle .mobile-menu-icon-line:nth-child(3) {
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+#mobile-menu-panel .mobile-menu a {
+  @apply relative text-22px font-bold;
+}
+
+#mobile-menu-panel .mobile-menu li.current_page_item a {
+  @apply pointer-events-none cursor-default;
 }
 
 /* Contact form */

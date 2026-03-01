@@ -269,6 +269,7 @@ body.mini-cart-open {
   .mini-cart-overlay.show {
     opacity: 1;
     visibility: visible;
+    z-index: 10;
   }
 }
 
